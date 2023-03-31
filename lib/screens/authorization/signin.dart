@@ -2,12 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:model_house/screens/authorization/signup.dart';
+import 'package:model_house/screens/body/Home.dart';
 
 import '../../components/buttons/ActiveButton.dart';
 import '../../components/buttons/DisabledButton.dart';
 import '../../components/buttons/Input.dart';
 import '../../components/texts/subtitles.dart';
 import '../../components/texts/titles.dart';
+import '../options/PrincipalView.dart';
 
 class Signin extends StatefulWidget {
   const Signin({Key? key}) : super(key: key);
@@ -64,7 +66,7 @@ class _SigninState extends State<Signin> {
               Container(
                 width: MediaQuery.of(context).size.width,
                 height: 45,
-                child: ActiveButton(10, "Sign In", () {}),
+                child: ActiveButton(10, "Sign In", redirectHome),
               ),
               Container(
                 margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
@@ -98,6 +100,16 @@ class _SigninState extends State<Signin> {
       MaterialPageRoute(
         builder: (BuildContext context) {
           return Signup();
+        },
+      ),
+    );
+  }
+
+  void redirectHome() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (BuildContext context) {
+          return PrincipalView();
         },
       ),
     );

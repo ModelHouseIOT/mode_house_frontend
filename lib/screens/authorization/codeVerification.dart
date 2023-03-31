@@ -4,8 +4,10 @@ import 'package:model_house/components/buttons/ActiveButton.dart';
 import 'package:model_house/components/buttons/Input.dart';
 import 'package:model_house/components/texts/subtitles.dart';
 import 'package:model_house/screens/authorization/signup.dart';
+import 'package:model_house/screens/body/Home.dart';
 
 import '../../components/texts/titles.dart';
+import '../options/PrincipalView.dart';
 
 class CodeVerification extends StatefulWidget {
   const CodeVerification({Key? key}) : super(key: key);
@@ -60,7 +62,7 @@ class _CodeVerificationState extends State<CodeVerification> {
                     ),
                     Container(
                         width: MediaQuery.of(context).size.width,
-                        child: ActiveButton(5, "Next", () {})),
+                        child: ActiveButton(5, "Next", redirectHome)),
                   ],
                 ),
               )),
@@ -76,6 +78,16 @@ class _CodeVerificationState extends State<CodeVerification> {
       MaterialPageRoute(
         builder: (BuildContext context) {
           return Signup();
+        },
+      ),
+    );
+  }
+
+  void redirectHome() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (BuildContext context) {
+          return PrincipalView();
         },
       ),
     );
