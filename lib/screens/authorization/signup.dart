@@ -1,22 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:model_house/screens/authorization/signup.dart';
+import 'package:model_house/components/buttons/ActiveButton.dart';
+import 'package:model_house/components/buttons/DisabledButton.dart';
+import 'package:model_house/components/buttons/Input.dart';
+import 'package:model_house/components/texts/titles.dart';
+import 'package:model_house/screens/authorization/codeVerification.dart';
+import 'package:model_house/screens/authorization/signin.dart';
 
-import '../../components/buttons/ActiveButton.dart';
-import '../../components/buttons/DisabledButton.dart';
-import '../../components/buttons/Input.dart';
 import '../../components/texts/subtitles.dart';
-import '../../components/texts/titles.dart';
 
-class Signin extends StatefulWidget {
-  const Signin({Key? key}) : super(key: key);
+class Signup extends StatefulWidget {
+  const Signup({Key? key}) : super(key: key);
 
   @override
-  _SigninState createState() => _SigninState();
+  _SignupState createState() => _SignupState();
 }
 
-class _SigninState extends State<Signin> {
+class _SignupState extends State<Signup> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +30,7 @@ class _SigninState extends State<Signin> {
                 child: Column(children: [
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
-                    child: Titles(35, "Sign In"),
+                    child: Titles(35, "Sign Up"),
                   ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 40),
@@ -40,6 +41,16 @@ class _SigninState extends State<Signin> {
                     ),
                   )
                 ]),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Subtitles("Name"),
+                    Input(Icons.visibility, "Type your Name", false),
+                  ],
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -61,27 +72,37 @@ class _SigninState extends State<Signin> {
                   ],
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Subtitles("Confirm Password"),
+                    Input(Icons.visibility, "Type Confirm Password", true),
+                  ],
+                ),
+              ),
               Container(
                 width: MediaQuery.of(context).size.width,
                 height: 45,
-                child: ActiveButton(10, "Sign In", () {}),
+                child: ActiveButton(10, "Sign Up", redirectCodeVerification),
               ),
               Container(
                 margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
                 width: MediaQuery.of(context).size.width,
                 height: 45,
-                child: DisabledButton(10, "Sign In With Google", () {}),
+                child: DisabledButton(10, "Sign Up With Google", () {}),
               ),
               Row(
                 children: <Widget>[
                   Text(
-                    "Don't have an account? ",
+                    "Do you have an account? ",
                     style: GoogleFonts.poppins(fontSize: 14),
                   ),
                   MaterialButton(
-                    onPressed: redirectSignUp,
+                    onPressed: redirectSignIn,
                     child: Text(
-                      "Sign Up",
+                      "Sign In",
                       style: GoogleFonts.poppins(
                           fontSize: 16, fontWeight: FontWeight.w600),
                     ),
@@ -93,11 +114,21 @@ class _SigninState extends State<Signin> {
     );
   }
 
-  void redirectSignUp() {
+  void redirectCodeVerification() {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (BuildContext context) {
-          return Signup();
+          return CodeVerification();
+        },
+      ),
+    );
+  }
+
+  void redirectSignIn() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (BuildContext context) {
+          return Signin();
         },
       ),
     );
