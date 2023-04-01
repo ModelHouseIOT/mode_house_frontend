@@ -14,7 +14,7 @@ class _PerfilState extends State<Perfil> {
     return Container(
       width: MediaQuery.of(context).size.width,
       child: Card(
-        margin: EdgeInsets.fromLTRB(20, 20, 20, 20),
+        margin: EdgeInsets.fromLTRB(0, 30, 0, 30),
         child: MaterialButton(
           padding: EdgeInsets.all(15),
           onPressed: () {},
@@ -28,9 +28,15 @@ class _PerfilState extends State<Perfil> {
               ),
               Column(
                 children: <Widget>[
-                  Text(
-                    "Diego Porta Ñaña",
-                    style: TextStyle(color: Color(0XFF02AA8B)),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                    child: Text(
+                      "Diego Porta Ñaña",
+                      style: TextStyle(
+                          color: Color(0XFF02AA8B),
+                          fontSize: 19,
+                          fontWeight: FontWeight.w600),
+                    ),
                   ),
                   Text("diegoporta20@hotmail.com",
                       style: TextStyle(color: Color(0XFF02AA8B)))
