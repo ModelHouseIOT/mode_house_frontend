@@ -1,13 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:model_house/components/buttons/ActiveButton.dart';
-import 'package:model_house/components/buttons/Input.dart';
-import 'package:model_house/components/texts/subtitles.dart';
-import 'package:model_house/screens/authorization/signup.dart';
-import 'package:model_house/screens/body/Home.dart';
+import 'package:model_house/Security/Screens/signup.dart';
 
-import '../../components/texts/titles.dart';
-import '../options/PrincipalView.dart';
+import '../../Shared/Components/PrincipalView.dart';
+import '../../Shared/Widgets/buttons/ActiveButton.dart';
+import '../../Shared/Widgets/buttons/Input.dart';
+import '../../Shared/Widgets/texts/subtitles.dart';
+import '../../Shared/Widgets/texts/titles.dart';
 
 class CodeVerification extends StatefulWidget {
   const CodeVerification({Key? key}) : super(key: key);
@@ -62,7 +61,7 @@ class _CodeVerificationState extends State<CodeVerification> {
                     ),
                     Container(
                         width: MediaQuery.of(context).size.width,
-                        child: ActiveButton(5, "Next", redirectHome)),
+                        child: ActiveButton(5, "Next", redirectHome, 19)),
                   ],
                 ),
               )),

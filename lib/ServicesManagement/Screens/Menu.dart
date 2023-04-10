@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:model_house/components/views/Activities.dart';
-import 'package:model_house/components/views/Adicional.dart';
-import 'package:model_house/components/views/Perfil.dart';
+
+import '../../Shared/Views/Adicional.dart';
+import '../../Shared/Views/Activities.dart';
+import '../../Shared/Views/Perfil.dart';
 
 class Menu extends StatefulWidget {
   const Menu({Key? key}) : super(key: key);
@@ -19,15 +20,18 @@ class _MenuState extends State<Menu> {
       children: [
         Perfil(),
         Activities(),
-        Adicional(),
         Padding(
-          padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-          child: MaterialButton(
-            height: 45,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            color: const Color(0XFF02AA8B),
-            onPressed: () {},
+          padding: const EdgeInsets.fromLTRB(0, 40, 0, 40),
+          child: Adicional(),
+        ),
+        MaterialButton(
+          height: 45,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+          color: const Color(0XFF02AA8B),
+          onPressed: () {},
+          child: Container(
+            padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
             child: Row(children: const <Widget>[
               Padding(
                 padding: EdgeInsets.fromLTRB(10, 0, 20, 0),
@@ -43,7 +47,7 @@ class _MenuState extends State<Menu> {
               )
             ]),
           ),
-        )
+        ),
       ],
     );
   }

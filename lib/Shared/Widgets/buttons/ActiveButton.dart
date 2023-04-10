@@ -6,7 +6,8 @@ class ActiveButton extends StatefulWidget {
   String? text;
   Function pressed;
   double border;
-  ActiveButton(this.border, this.text, this.pressed, {Key? key})
+  double size;
+  ActiveButton(this.border, this.text, this.pressed, this.size, {Key? key})
       : super(key: key);
 
   @override
@@ -24,7 +25,8 @@ class _ActiveButtonState extends State<ActiveButton> {
       onPressed: () => widget.pressed(),
       child: Text(
         widget.text!,
-        style: GoogleFonts.poppins(fontSize: 19, fontWeight: FontWeight.w500),
+        style: GoogleFonts.poppins(
+            fontSize: widget.size, fontWeight: FontWeight.w500),
       ),
     );
   }

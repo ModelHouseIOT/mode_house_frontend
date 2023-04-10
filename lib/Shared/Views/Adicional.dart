@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:model_house/Shared/Widgets/texts/titles.dart';
 
-import '../texts/subtitles.dart';
+import '../../Shared/Widgets/texts/subtitles.dart';
 
 class Adicional extends StatefulWidget {
   const Adicional({Key? key}) : super(key: key);
@@ -15,49 +16,49 @@ class _AdicionalState extends State<Adicional> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Subtitles("Adicional"),
+        Titles(27, "Adicional"),
         Card(
           child: MaterialButton(
             onPressed: () {},
-            child: Row(children: [
-              const Padding(
+            child: Row(children: const [
+              Padding(
                 padding: EdgeInsets.fromLTRB(0, 12, 20, 12),
                 child: Icon(
-                  Icons.favorite,
+                  Icons.credit_card_outlined,
                   size: 30,
                 ),
               ),
-              Text("Favoritos")
+              Text("Cards")
             ]),
           ),
         ),
         Card(
           child: MaterialButton(
             onPressed: () {},
-            child: Row(children: [
-              const Padding(
+            child: Row(children: const [
+              Padding(
                 padding: EdgeInsets.fromLTRB(0, 12, 20, 12),
                 child: Icon(
-                  Icons.notifications,
+                  Icons.payments_outlined,
                   size: 30,
                 ),
               ),
-              Text("Nofication")
+              Text("Payments")
             ]),
           ),
         ),
         Card(
           child: MaterialButton(
             onPressed: () {},
-            child: Row(children: [
-              const Padding(
+            child: Row(children: const [
+              Padding(
                 padding: EdgeInsets.fromLTRB(0, 12, 20, 12),
                 child: Icon(
-                  Icons.settings,
+                  Icons.house_outlined,
                   size: 30,
                 ),
               ),
-              Text("Favoritos")
+              Text("Premiun")
             ]),
           ),
         )

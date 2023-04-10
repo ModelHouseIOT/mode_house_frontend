@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:model_house/components/buttons/ActiveButton.dart';
-import 'package:model_house/components/buttons/DisabledButton.dart';
-import 'package:model_house/components/buttons/Input.dart';
-import 'package:model_house/components/texts/titles.dart';
-import 'package:model_house/screens/authorization/codeVerification.dart';
-import 'package:model_house/screens/authorization/signin.dart';
+import 'package:model_house/Security/Screens/signin.dart';
 
-import '../../components/texts/subtitles.dart';
+import '../../Shared/Widgets/buttons/ActiveButton.dart';
+import '../../Shared/Widgets/buttons/DisabledButton.dart';
+import '../../Shared/Widgets/buttons/Input.dart';
+import '../../Shared/Widgets/texts/subtitles.dart';
+import '../../Shared/Widgets/texts/titles.dart';
+import 'codeVerification.dart';
 
 class Signup extends StatefulWidget {
   const Signup({Key? key}) : super(key: key);
@@ -85,7 +85,8 @@ class _SignupState extends State<Signup> {
               Container(
                 width: MediaQuery.of(context).size.width,
                 height: 45,
-                child: ActiveButton(10, "Sign Up", redirectCodeVerification),
+                child:
+                    ActiveButton(10, "Sign Up", redirectCodeVerification, 19),
               ),
               Container(
                 margin: EdgeInsets.fromLTRB(0, 20, 0, 20),

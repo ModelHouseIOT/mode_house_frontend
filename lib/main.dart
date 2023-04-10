@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:model_house/screens/authorization/welcomeApplication.dart';
+import 'package:model_house/Security/Screens/welcomeApplication.dart';
 
 void main() {
   runApp(const MyApp());

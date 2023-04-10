@@ -1,15 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:model_house/screens/authorization/signup.dart';
-import 'package:model_house/screens/body/Home.dart';
+import 'package:model_house/Security/Screens/signup.dart';
 
-import '../../components/buttons/ActiveButton.dart';
-import '../../components/buttons/DisabledButton.dart';
-import '../../components/buttons/Input.dart';
-import '../../components/texts/subtitles.dart';
-import '../../components/texts/titles.dart';
-import '../options/PrincipalView.dart';
+import '../../Shared/Components/PrincipalView.dart';
+import '../../Shared/Widgets/buttons/ActiveButton.dart';
+import '../../Shared/Widgets/buttons/DisabledButton.dart';
+import '../../Shared/Widgets/buttons/Input.dart';
+import '../../Shared/Widgets/texts/subtitles.dart';
+import '../../Shared/Widgets/texts/titles.dart';
 
 class Signin extends StatefulWidget {
   const Signin({Key? key}) : super(key: key);
@@ -66,7 +65,7 @@ class _SigninState extends State<Signin> {
               Container(
                 width: MediaQuery.of(context).size.width,
                 height: 45,
-                child: ActiveButton(10, "Sign In", redirectHome),
+                child: ActiveButton(10, "Sign In", redirectHome, 19),
               ),
               Container(
                 margin: EdgeInsets.fromLTRB(0, 20, 0, 20),

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:model_house/ServicesManagement/Screens/Profile.dart';
 
 class Perfil extends StatefulWidget {
   const Perfil({Key? key}) : super(key: key);
@@ -17,7 +18,7 @@ class _PerfilState extends State<Perfil> {
         margin: EdgeInsets.fromLTRB(0, 30, 0, 30),
         child: MaterialButton(
           padding: EdgeInsets.all(15),
-          onPressed: () {},
+          onPressed: redirectPerfil,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -45,6 +46,16 @@ class _PerfilState extends State<Perfil> {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  void redirectPerfil() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (BuildContext context) {
+          return Profile();
+        },
       ),
     );
   }

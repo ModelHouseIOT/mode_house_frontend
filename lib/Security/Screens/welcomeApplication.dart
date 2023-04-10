@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:model_house/components/buttons/ActiveButton.dart';
-import 'package:model_house/components/texts/titles.dart';
-import 'package:model_house/screens/authorization/signin.dart';
-import 'package:model_house/screens/authorization/signup.dart';
+import 'package:model_house/Security/Screens/signin.dart';
+import 'package:model_house/Security/Screens/signup.dart';
+
+import '../../Shared/Widgets/buttons/ActiveButton.dart';
+import '../../Shared/Widgets/texts/titles.dart';
 
 class WelcomeApplication extends StatefulWidget {
   const WelcomeApplication({Key? key}) : super(key: key);
@@ -43,14 +44,14 @@ class _WelcomeApplicationState extends State<WelcomeApplication> {
                     child: Container(
                         width: 120,
                         height: 45,
-                        child: ActiveButton(5, "Sign In", redirectSignIn)),
+                        child: ActiveButton(5, "Sign In", redirectSignIn, 19)),
                   ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
                     child: Container(
                         width: 120,
                         height: 45,
-                        child: ActiveButton(5, "Sign Up", redirectSignUp)),
+                        child: ActiveButton(5, "Sign Up", redirectSignUp, 19)),
                   )
                 ],
               ),

@@ -30,7 +30,7 @@ class _NavigationState extends State<Navigation> {
       backgroundColor: Color(0XFF152031),
       items: const [
         BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-        BottomNavigationBarItem(icon: Icon(Icons.message), label: 'Message'),
+        BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'Favorite'),
         BottomNavigationBarItem(
             icon: Icon(Icons.notifications), label: 'Notification'),
         BottomNavigationBarItem(icon: Icon(Icons.menu), label: 'Menu'),

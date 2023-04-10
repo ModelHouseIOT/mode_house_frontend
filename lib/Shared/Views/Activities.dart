@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:model_house/components/texts/subtitles.dart';
+import 'package:model_house/Shared/Widgets/texts/titles.dart';
+import '../../Shared/Widgets/texts/subtitles.dart';
 
 class Activities extends StatefulWidget {
   const Activities({Key? key}) : super(key: key);
@@ -14,7 +15,7 @@ class _ActivitiesState extends State<Activities> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Subtitles("Activities"),
+        Titles(27, "Activities"),
         Card(
           child: MaterialButton(
             onPressed: () {},
@@ -22,11 +23,11 @@ class _ActivitiesState extends State<Activities> {
               Padding(
                 padding: EdgeInsets.fromLTRB(0, 12, 20, 12),
                 child: Icon(
-                  Icons.add_circle_outline,
+                  Icons.shopping_cart_outlined,
                   size: 30,
                 ),
               ),
-              Text("Create Post")
+              Text("Your Orders")
             ]),
           ),
         ),
@@ -37,11 +38,11 @@ class _ActivitiesState extends State<Activities> {
               Padding(
                 padding: EdgeInsets.fromLTRB(0, 12, 20, 12),
                 child: Icon(
-                  Icons.post_add_outlined,
+                  Icons.polyline_outlined,
                   size: 30,
                 ),
               ),
-              Text("Create Post")
+              Text("Your Requests")
             ]),
           ),
         ),
@@ -52,43 +53,14 @@ class _ActivitiesState extends State<Activities> {
               Padding(
                 padding: EdgeInsets.fromLTRB(0, 12, 20, 12),
                 child: Icon(
-                  Icons.shopping_cart,
+                  Icons.article_outlined,
                   size: 30,
                 ),
               ),
-              Text("Your Post")
+              Text("Deals")
             ]),
           ),
-        ),
-        Card(
-          child: MaterialButton(
-            onPressed: () {},
-            child: Row(children: const <Widget>[
-              Padding(
-                padding: EdgeInsets.fromLTRB(0, 12, 20, 12),
-                child: Icon(
-                  Icons.rebase_edit,
-                  size: 30,
-                ),
-              ),
-              Text("Your Request")
-            ]),
-          ),
-        ),
-        Card(
-            child: MaterialButton(
-          onPressed: () {},
-          child: Row(children: const <Widget>[
-            Padding(
-              padding: EdgeInsets.fromLTRB(0, 12, 20, 12),
-              child: Icon(
-                Icons.description,
-                size: 30,
-              ),
-            ),
-            Text("Deals")
-          ]),
-        ))
+        )
       ],
     );
   }

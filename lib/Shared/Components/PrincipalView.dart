@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../components/buttons/Navigation.dart';
+import 'Navigation.dart';
 import 'Routes.dart';
 
 class PrincipalView extends StatefulWidget {

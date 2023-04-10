@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 
 class Titles extends StatefulWidget {
   String? text;
-  Function? algo;
   double size;
 
   Titles(this.size, this.text, {Key? key}) : super(key: key);

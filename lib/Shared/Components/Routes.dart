@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
-import 'package:model_house/screens/body/Home.dart';
-import 'package:model_house/screens/body/Menu.dart';
-import 'package:model_house/screens/body/Message.dart';
 
-import '../body/Notification.dart';
+import '../../ServicesManagement/Screens/Favorites.dart';
+import '../../ServicesManagement/Screens/Home.dart';
+import '../../ServicesManagement/Screens/Notification.dart';
+import '../../ServicesManagement/Screens/Menu.dart';
 
 class Routes extends StatefulWidget {
   final int index;
@@ -18,7 +18,7 @@ class _RoutesState extends State<Routes> {
   Widget build(BuildContext context) {
     List<Widget> myList = [
       Home(),
-      Message(),
+      Favorites(),
       Notifications(),
       Menu(),
     ];
