@@ -1,9 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:model_house/Security/Interfaces/Account.dart';
+import 'package:model_house/Security/Interfaces/User.dart';
 import 'package:model_house/ServicesManagement/Screens/Profile.dart';
+import 'package:model_house/Shared/Views/FormProfileUser.dart';
 
 class Perfil extends StatefulWidget {
-  const Perfil({Key? key}) : super(key: key);
+  Account account;
+  UserProfile user;
+  Perfil(this.account, this.user, {Key? key}) : super(key: key);
 
   @override
   _PerfilState createState() => _PerfilState();
@@ -32,14 +37,14 @@ class _PerfilState extends State<Perfil> {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                     child: Text(
-                      "Diego Porta Ñaña",
+                      widget.user.firstName  + " " + widget.user.lastName,
                       style: TextStyle(
                           color: Color(0XFF02AA8B),
                           fontSize: 19,
                           fontWeight: FontWeight.w600),
                     ),
                   ),
-                  Text("diegoporta20@hotmail.com",
+                  Text(widget.account.emailAddress,
                       style: TextStyle(color: Color(0XFF02AA8B)))
                 ],
               )
@@ -51,12 +56,20 @@ class _PerfilState extends State<Perfil> {
   }
 
   void redirectPerfil() {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (BuildContext context) {
-          return Profile();
-        },
-      ),
-    );
+    widget.account.userId != 0
+        ? Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (BuildContext context) {
+                return Profile(widget.account, widget.user);
+              },
+            ),
+          )
+        : Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (BuildContext context) {
+                return FormProfileUser(widget.account);
+              },
+            ),
+          );
   }
 }

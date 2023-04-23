@@ -6,7 +6,9 @@ class Input extends StatefulWidget {
   String? text;
   IconData icon;
   bool? visibility;
-  Input(this.icon, this.text, this.visibility, {Key? key}) : super(key: key);
+  TextEditingController? emailAddress;
+  Input(this.icon, this.text, this.visibility, this.emailAddress, {Key? key})
+      : super(key: key);
 
   @override
   _InputState createState() => _InputState();
@@ -17,6 +19,7 @@ class _InputState extends State<Input> {
   Widget build(BuildContext context) {
     if (widget.visibility!) {
       return TextField(
+        controller: widget.emailAddress,
         keyboardType: TextInputType.visiblePassword,
         style: GoogleFonts.poppins(fontSize: 14, color: Color(0XFF02AA8B)),
         decoration: InputDecoration(
@@ -43,6 +46,7 @@ class _InputState extends State<Input> {
     }
     return TextField(
       keyboardType: TextInputType.visiblePassword,
+      controller: widget.emailAddress,
       style: GoogleFonts.poppins(fontSize: 14, color: Color(0XFF02AA8B)),
       decoration: InputDecoration(
         hintText: widget.text,

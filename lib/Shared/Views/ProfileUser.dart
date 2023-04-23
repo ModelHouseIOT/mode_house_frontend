@@ -1,12 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:model_house/Security/Interfaces/User.dart';
 import 'package:model_house/Shared/Widgets/buttons/ActiveButton.dart';
 import 'package:model_house/Shared/Widgets/texts/subtitles.dart';
 
 import '../Widgets/texts/titles.dart';
 
 class ProfileUser extends StatefulWidget {
-  const ProfileUser({Key? key}) : super(key: key);
+  UserProfile user;
+  ProfileUser(this.user, {Key? key}) : super(key: key);
 
   @override
   _ProfileUserState createState() => _ProfileUserState();
@@ -31,7 +33,7 @@ class _ProfileUserState extends State<ProfileUser> {
                 ),
                 Column(
                   children: [
-                    Subtitles("Luis Li Tang"),
+                    Subtitles(widget.user.firstName),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
                       child: Text("Client and Business"),
@@ -59,13 +61,13 @@ class _ProfileUserState extends State<ProfileUser> {
                       Row(
                         children: [
                           Titles(13, "First Name: "),
-                          Text("Diego Alexander")
+                          Text(widget.user.firstName)
                         ],
                       ),
                       Row(
                         children: [
                           Titles(13, "Last Name: "),
-                          Text("Porta Ñaña")
+                          Text(widget.user.lastName)
                         ],
                       )
                     ],
@@ -77,12 +79,12 @@ class _ProfileUserState extends State<ProfileUser> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Row(
-                        children: [Titles(13, "Gender: "), Text("Masculino")],
+                        children: [Titles(13, "Gender: "), Text(widget.user.gender)],
                       ),
                       Row(
                         children: [
                           Titles(13, "Phone Number: "),
-                          Text("971486606")
+                          Text(widget.user.phoneNumber)
                         ],
                       )
                     ],
@@ -95,7 +97,7 @@ class _ProfileUserState extends State<ProfileUser> {
                       child: Row(
                         children: [
                           Titles(13, "Registration Date "),
-                          Text("971486606")
+                          Text(widget.user.registrationDate)
                         ],
                       ),
                     ),

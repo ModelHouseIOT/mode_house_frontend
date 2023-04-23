@@ -8,6 +8,8 @@ import '../../Shared/Widgets/buttons/DisabledButton.dart';
 import '../../Shared/Widgets/buttons/Input.dart';
 import '../../Shared/Widgets/texts/subtitles.dart';
 import '../../Shared/Widgets/texts/titles.dart';
+import '../Interfaces/Account.dart';
+import '../Services/Account_Service.dart';
 import 'codeVerification.dart';
 
 class Signup extends StatefulWidget {
@@ -18,6 +20,35 @@ class Signup extends StatefulWidget {
 }
 
 class _SignupState extends State<Signup> {
+  final email = TextEditingController();
+  final password = TextEditingController();
+  final confirm = TextEditingController();
+  String? message;
+  String? code;
+
+  HttpAccount? httpAccount;
+  void initState() {
+    httpAccount = HttpAccount();
+    super.initState();
+  }
+
+  Future signUp() async {
+    message = await httpAccount?.signUp(email.text, password.text);
+    setState(() async {
+      message = message;
+      code = "12345";
+      if (message == '{"message":"Registration successful"}') {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (BuildContext context) {
+              return CodeVerification(code!);
+            },
+          ),
+        );
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,22 +74,13 @@ class _SignupState extends State<Signup> {
                 ]),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Subtitles("Name"),
-                    Input(Icons.visibility, "Type your Name", false),
-                  ],
-                ),
-              ),
-              Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Subtitles("Email Address"),
-                    Input(Icons.visibility, "Type your Email Address", false),
+                    Input(Icons.visibility, "Type your Email Address", false,
+                        email),
                   ],
                 ),
               ),
@@ -67,8 +89,9 @@ class _SignupState extends State<Signup> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Subtitles("Email Password"),
-                    Input(Icons.visibility, "Type your Password", true),
+                    Subtitles("Password"),
+                    Input(
+                        Icons.visibility, "Type your Password", true, password),
                   ],
                 ),
               ),
@@ -78,15 +101,15 @@ class _SignupState extends State<Signup> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Subtitles("Confirm Password"),
-                    Input(Icons.visibility, "Type Confirm Password", true),
+                    Input(Icons.visibility, "Type Confirm Password", true,
+                        confirm),
                   ],
                 ),
               ),
               Container(
                 width: MediaQuery.of(context).size.width,
                 height: 45,
-                child:
-                    ActiveButton(10, "Sign Up", redirectCodeVerification, 19),
+                child: ActiveButton(10, "Sign Up", signUp, 19),
               ),
               Container(
                 margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
@@ -112,16 +135,6 @@ class _SignupState extends State<Signup> {
               )
             ],
           )),
-    );
-  }
-
-  void redirectCodeVerification() {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (BuildContext context) {
-          return CodeVerification();
-        },
-      ),
     );
   }
 

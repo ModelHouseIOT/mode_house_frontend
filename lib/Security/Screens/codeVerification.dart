@@ -7,15 +7,19 @@ import '../../Shared/Widgets/buttons/ActiveButton.dart';
 import '../../Shared/Widgets/buttons/Input.dart';
 import '../../Shared/Widgets/texts/subtitles.dart';
 import '../../Shared/Widgets/texts/titles.dart';
+import '../Interfaces/Account.dart';
 
 class CodeVerification extends StatefulWidget {
-  const CodeVerification({Key? key}) : super(key: key);
+  String code;
+  CodeVerification(this.code, {Key? key}) : super(key: key);
 
   @override
   _CodeVerificationState createState() => _CodeVerificationState();
 }
 
 class _CodeVerificationState extends State<CodeVerification> {
+  final code = TextEditingController();
+  Account? account;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,8 +60,8 @@ class _CodeVerificationState extends State<CodeVerification> {
                     Subtitles("Verification Code"),
                     Container(
                       padding: const EdgeInsets.fromLTRB(0, 30, 0, 30),
-                      child:
-                          Input(Icons.visibility, "Code verification", false),
+                      child: Input(
+                          Icons.visibility, "Code verification", false, code),
                     ),
                     Container(
                         width: MediaQuery.of(context).size.width,
@@ -86,7 +90,7 @@ class _CodeVerificationState extends State<CodeVerification> {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (BuildContext context) {
-          return PrincipalView();
+          return PrincipalView(account!);
         },
       ),
     );
