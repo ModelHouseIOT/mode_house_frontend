@@ -37,7 +37,7 @@ class _ProfileState extends State<Profile> {
       ),
       body: ListView(
         children: [
-          ProfileUser(widget.user!),
+          ProfileUser(widget.user),
           widget.account.role == "Business" ? ProfileBusiness() : Container()
         ],
       ),

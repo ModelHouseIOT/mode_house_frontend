@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:model_house/ServicesManagement/Screens/BusinessProfile.dart';
 
 import '../../Security/Interfaces/Account.dart';
 import '../Widgets/texts/titles.dart';
@@ -48,7 +49,15 @@ class _ListBusinessState extends State<ListBusiness> {
                 ],
               ),
               IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (BuildContext context) {
+                          return BusinessProfile(account);
+                        },
+                      ),
+                    );
+                  },
                   icon: Icon(
                     Icons.navigate_next_outlined,
                     color: Color(0XFF02AA8B),
