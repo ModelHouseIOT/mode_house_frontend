@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:model_house/screens/authorization/signin.dart';
+import 'package:model_house/Security/Screens/welcomeApplication.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Signin(),
+      home: const WelcomeApplication(),
     );
   }
 }
