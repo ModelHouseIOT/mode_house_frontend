@@ -9,7 +9,6 @@ class HttpUserProfile {
   final String urlBase = 'https://localhost:7120/api/v1/user';
   var businessProfile = http.Client();
   Future<List<UserProfile>?> getUserProfile() async {
-    print("holi");
     String accountUrl = urlBase;
     var uri = Uri.parse(accountUrl);
     var response = await businessProfile.get(uri);
@@ -26,7 +25,6 @@ class HttpUserProfile {
       'Content-Type': 'application/json; charset=UTF-8',
       "Accept": "application/json"
     });
-    print(response.statusCode);
     if (response.statusCode == 200) {
       return UserProfile.fromJson(jsonDecode(response.body));
     }
@@ -35,7 +33,6 @@ class HttpUserProfile {
 
   Future<UserProfile?> createProfile(String firstname, String lastname,
       String phonenumber, String gender, int accountId) async {
-    print("uri");
     final String accountUrl = urlBase;
     var uri = Uri.parse(accountUrl);
     var response = await businessProfile.post(uri,
@@ -55,8 +52,13 @@ class HttpUserProfile {
     }
   }
 
-  Future<BusinessProfile?> updateUserProfile(String firstname, String lastname,
-      String phonenumber, String gender, String image, int accountId) async {
+  Future<BusinessProfileInterface?> updateUserProfile(
+      String firstname,
+      String lastname,
+      String phonenumber,
+      String gender,
+      String image,
+      int accountId) async {
     final String postUrl = urlBase + "/$accountId";
     var uri = Uri.parse(postUrl);
 
@@ -74,7 +76,7 @@ class HttpUserProfile {
       final streamedResponse = await request.send();
       final response = await http.Response.fromStream(streamedResponse);
       if (response.statusCode == 200) {
-        return BusinessProfile.fromJson(jsonDecode(response.body));
+        return BusinessProfileInterface.fromJson(jsonDecode(response.body));
       }
     } catch (e) {
       print("Algo salio mal");

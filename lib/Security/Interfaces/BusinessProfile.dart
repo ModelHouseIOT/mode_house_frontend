@@ -1,58 +1,50 @@
 import 'dart:convert';
 
-List<BusinessProfile> businessProfileFromJson(String str) =>
-    List<BusinessProfile>.from(
-        json.decode(str).map((x) => BusinessProfile.fromJson(x)));
+List<BusinessProfileInterface> businessProfileFromJson(String str) =>
+    List<BusinessProfileInterface>.from(
+        json.decode(str).map((x) => BusinessProfileInterface.fromJson(x)));
 
-String businessProfileToJson(List<BusinessProfile> data) =>
+String businessProfileToJson(List<BusinessProfileInterface> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class BusinessProfile {
+class BusinessProfileInterface {
   int id;
-  String first_name;
-  String last_name;
-  String gender;
-  String phone_number;
-  int account_id;
+  String name;
+  String description;
+  String address;
+  String webSite;
   String image;
-  bool account_status;
-  String last_login;
-  String registration_date;
-  BusinessProfile({
+  String foundationDate;
+  int accountId;
+  BusinessProfileInterface({
     required this.id,
-    required this.first_name,
-    required this.last_name,
-    required this.gender,
-    required this.phone_number,
-    required this.account_id,
+    required this.name,
+    required this.description,
+    required this.address,
+    required this.webSite,
     required this.image,
-    required this.account_status,
-    required this.last_login,
-    required this.registration_date,
+    required this.foundationDate,
+    required this.accountId,
   });
-  factory BusinessProfile.fromJson(Map<String, dynamic> json) =>
-      BusinessProfile(
+  factory BusinessProfileInterface.fromJson(Map<String, dynamic> json) =>
+      BusinessProfileInterface(
         id: json["id"],
-        first_name: json["first_name"],
-        last_name: json["last_name"],
-        gender: json["gender"],
-        phone_number: json["phone_number"],
-        account_id: json["account_id"],
+        name: json["name"],
+        description: json["description"],
+        address: json["address"],
+        webSite: json["webSite"],
         image: json["image"],
-        account_status: json["account_status"],
-        last_login: json["tokenlast_login"],
-        registration_date: json["registration_date"],
+        foundationDate: json["foundationDate"],
+        accountId: json["accountId"],
       );
   Map<String, dynamic> toJson() => {
         "id": id,
-        "first_name": first_name,
-        "last_name": last_name,
-        "gender": gender,
-        "phone_number": phone_number,
-        "account_id": account_id,
+        "name": name,
+        "description": description,
+        "address": address,
+        "webSite": webSite,
         "image": image,
-        "account_status": account_status,
-        "last_login": last_login,
-        "registration_date": registration_date,
+        "foundationDate": foundationDate,
+        "accountId": accountId,
       };
 }

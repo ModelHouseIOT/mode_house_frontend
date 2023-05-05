@@ -27,9 +27,10 @@ class _PrincipalVireState extends State<PrincipalView> {
       cuenta = cuenta;
     });
   }
+
   void initState() {
     httpAccount = HttpAccount();
-    signIn();
+    //signIn();
     myNavigation = Navigation(currentIndex: (i) {
       setState(() {
         index = i;
@@ -37,12 +38,13 @@ class _PrincipalVireState extends State<PrincipalView> {
     });
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       bottomNavigationBar: myNavigation,
-      body: Routes(index, cuenta!),
+      body: Routes(index, widget.account),
     );
   }
 }

@@ -34,10 +34,10 @@ class _SignupState extends State<Signup> {
 
   Future signUp() async {
     message = await httpAccount?.signUp(email.text, password.text);
-    setState(() async {
+    setState(() {
       message = message;
       code = "12345";
-      if (message == '{"message":"Registration successful"}') {
+      if (message != null) {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (BuildContext context) {
