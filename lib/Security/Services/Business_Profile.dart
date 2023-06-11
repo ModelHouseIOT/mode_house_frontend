@@ -5,10 +5,9 @@ import 'package:model_house/Security/Interfaces/Account.dart';
 import 'package:model_house/Security/Interfaces/BusinessProfile.dart';
 
 class HttpBusinessProfile {
-  final String urlBase = 'https://localhost:7120/api/v1/user';
+  final String urlBase = 'https://localhost:7120/api/v1/businessprofile';
   var businessProfile = http.Client();
-  Future<List<BusinessProfile>?> getBusinessProfile() async {
-    print("holi");
+  Future<List<BusinessProfileInterface>?> getBusinessProfile() async {
     String accountUrl = urlBase;
     var uri = Uri.parse(accountUrl);
     var response = await businessProfile.get(uri);
@@ -18,24 +17,22 @@ class HttpBusinessProfile {
     }
   }
 
-  Future<BusinessProfile?> getbusinessProfileById(String id) async {
+  Future<BusinessProfileInterface?> getbusinessProfileById(String id) async {
     final String postUrl = urlBase + "/account" + '/$id';
     var uri = Uri.parse(postUrl);
     var response = await businessProfile.get(uri, headers: {
       'Content-Type': 'application/json; charset=UTF-8',
       "Accept": "application/json"
     });
-    print(response.body);
     try {
-      return BusinessProfile.fromJson(jsonDecode(response.body));
+      return BusinessProfileInterface.fromJson(jsonDecode(response.body));
     } catch (e) {
       print("Error");
     }
   }
 
-  Future<BusinessProfile?> createProfile(String firstname, String lastname,
-      String phonenumber, String gender, int accountId) async {
-    print("uri");
+  Future<BusinessProfileInterface?> createProfile(String firstname,
+      String lastname, String phonenumber, String gender, int accountId) async {
     final String accountUrl = urlBase;
     var uri = Uri.parse(accountUrl);
     var response = await businessProfile.post(uri,
@@ -51,11 +48,11 @@ class HttpBusinessProfile {
           'accountId': accountId,
         }));
     if (response.statusCode == 200) {
-      return BusinessProfile.fromJson(jsonDecode(response.body));
+      return BusinessProfileInterface.fromJson(jsonDecode(response.body));
     }
   }
 
-  Future<BusinessProfile?> updateBusinessProfile(
+  Future<BusinessProfileInterface?> updateBusinessProfile(
       String firstname,
       String lastname,
       String phonenumber,
@@ -79,7 +76,7 @@ class HttpBusinessProfile {
       final streamedResponse = await request.send();
       final response = await http.Response.fromStream(streamedResponse);
       if (response.statusCode == 200) {
-        return BusinessProfile.fromJson(jsonDecode(response.body));
+        return BusinessProfileInterface.fromJson(jsonDecode(response.body));
       }
     } catch (e) {
       print("Algo salio mal");

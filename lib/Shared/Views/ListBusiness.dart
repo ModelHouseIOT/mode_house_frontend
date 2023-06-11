@@ -1,13 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:model_house/ServicesManagement/Screens/BusinessProfile.dart';
+import 'package:model_house/Security/Interfaces/BusinessProfile.dart';
 
 import '../../Security/Interfaces/Account.dart';
+import '../../ServicesManagement/Screens/BusinessProfile.dart';
 import '../Widgets/texts/titles.dart';
 
 class ListBusiness extends StatefulWidget {
-  List<Account> accounts;
-  ListBusiness(this.accounts, {Key? key}) : super(key: key);
+  List<BusinessProfileInterface> business;
+  ListBusiness(this.business, {Key? key}) : super(key: key);
 
   @override
   _ListBusinessState createState() => _ListBusinessState();
@@ -18,20 +19,19 @@ class _ListBusinessState extends State<ListBusiness> {
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.builder(
-        itemCount: widget.accounts.length,
+        itemCount: widget.business.length,
         itemBuilder: (context, index) {
-          return cardBusiness(widget.accounts[index]);
+          return cardBusiness(widget.business[index]);
         },
       ),
     );
-
   }
-  Widget cardBusiness(Account account){
+
+  Widget cardBusiness(BusinessProfileInterface business) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 3, 20, 3),
       child: Card(
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         child: Container(
           padding: EdgeInsets.all(15),
           child: Row(
@@ -44,7 +44,7 @@ class _ListBusinessState extends State<ListBusiness> {
               ),
               Column(
                 children: [
-                  Titles(18, account.emailAddress),
+                  Titles(18, business.name),
                   Text("Client and Business")
                 ],
               ),
@@ -53,7 +53,7 @@ class _ListBusinessState extends State<ListBusiness> {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (BuildContext context) {
-                          return BusinessProfile(account);
+                          return Container();
                         },
                       ),
                     );

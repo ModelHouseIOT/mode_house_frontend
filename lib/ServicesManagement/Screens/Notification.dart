@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:model_house/Security/Interfaces/BusinessProfile.dart';
 
 import '../../Security/Interfaces/Account.dart';
 import '../../Security/Services/Account_Service.dart';
+import '../../Security/Services/Business_Profile.dart';
 import '../../Shared/Views/ListBusiness.dart';
 import '../../Shared/Widgets/texts/titles.dart';
 
@@ -15,19 +17,21 @@ class Notifications extends StatefulWidget {
 }
 
 class _NotificationState extends State<Notifications> {
-  HttpAccount? httpAccount;
-  List<Account>? businesses;
+  HttpBusinessProfile? httpBusinessProfile;
+  List<BusinessProfileInterface>? businesses;
   void initState() {
-    httpAccount = HttpAccount();
+    httpBusinessProfile = HttpBusinessProfile();
     getBusiness();
     super.initState();
   }
+
   Future getBusiness() async {
-    businesses = await httpAccount?.getAllBusiness();
+    businesses = await httpBusinessProfile?.getBusinessProfile();
     setState(() {
       businesses = businesses;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +41,7 @@ class _NotificationState extends State<Notifications> {
             padding: EdgeInsets.fromLTRB(20, 40, 20, 15),
             child: Titles(28, "Notification"),
           ),
-          ListBusiness(businesses!)
+          businesses != null ? ListBusiness(businesses!) : Container()
         ],
       ),
     );

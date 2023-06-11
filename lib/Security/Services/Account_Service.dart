@@ -9,20 +9,17 @@ class HttpAccount {
   Future<List<Account>?> getAll() async {
     String accountUrl = urlBase;
     var uri = Uri.parse(accountUrl);
-    print(uri);
     var response = await account.get(uri);
-    print("holi");
     if (response.statusCode == 200) {
       var json = response.body;
       return accountFromJson(json);
     }
   }
+
   Future<List<Account>?> getAllBusiness() async {
-    String accountUrl = urlBase + "/business";
+    String accountUrl = urlBase + "/businessprofile";
     var uri = Uri.parse(accountUrl);
-    print(uri);
     var response = await account.get(uri);
-    print("holi");
     if (response.statusCode == 200) {
       var json = response.body;
       return accountFromJson(json);
@@ -36,7 +33,6 @@ class HttpAccount {
       'Content-Type': 'application/json; charset=UTF-8',
       "Accept": "application/json"
     });
-    print(response.statusCode);
     if (response.statusCode == 200) {
       return Account.fromJson(jsonDecode(response.body));
     }

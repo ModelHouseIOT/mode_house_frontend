@@ -15,6 +15,12 @@ class Perfil extends StatefulWidget {
 }
 
 class _PerfilState extends State<Perfil> {
+  void initState() {
+    print(widget.account.userId);
+    print(widget.user.id);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,7 +43,7 @@ class _PerfilState extends State<Perfil> {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                     child: Text(
-                      widget.user.firstName  + " " + widget.user.lastName,
+                      widget.user.firstName + " " + widget.user.lastName,
                       style: TextStyle(
                           color: Color(0XFF02AA8B),
                           fontSize: 19,
@@ -56,7 +62,7 @@ class _PerfilState extends State<Perfil> {
   }
 
   void redirectPerfil() {
-    widget.account.userId != 0
+    widget.user != null
         ? Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) {
