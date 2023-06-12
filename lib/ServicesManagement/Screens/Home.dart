@@ -30,8 +30,7 @@ class _HomeState extends State<Home> {
   }
 
   Future getBusiness() async {
-    //businesses = await httpAccount?.getAllBusiness();
-    businesses = await httpBusinessProfile?.getBusinessProfile();
+    businesses = await httpBusinessProfile?.getAllBusinessProfile();
     setState(() {
       businesses = businesses;
     });

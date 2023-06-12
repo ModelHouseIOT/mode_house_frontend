@@ -19,6 +19,8 @@ class HttpUser {
           'emailAddress': emailAddress,
           'password': password,
         }));
+    print(response.body);
+    print("Holi response xd");
     if (response.statusCode == 200) {
       return User.fromJson(jsonDecode(response.body));
     }

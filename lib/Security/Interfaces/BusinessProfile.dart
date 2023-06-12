@@ -14,8 +14,8 @@ class BusinessProfile {
   String image;
   String name;
   String phoneBusiness;
-  int webSite;
-  bool accountId;
+  String webSite;
+  int accountId;
   String registrationDate;
   BusinessProfile({
     required this.id,

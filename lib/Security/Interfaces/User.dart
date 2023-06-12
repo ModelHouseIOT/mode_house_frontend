@@ -11,7 +11,7 @@ class User {
   String emailAddress;
   String password;
   String role;
-  String isActive;
+  bool isActive;
   String token;
   User(
       {required this.id,

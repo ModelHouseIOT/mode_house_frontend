@@ -31,7 +31,6 @@ class _PrincipalVireState extends State<PrincipalView> {
 
   void initState() {
     httpAccount = HttpAccount();
-    //signIn();
     myNavigation = Navigation(currentIndex: (i) {
       setState(() {
         index = i;

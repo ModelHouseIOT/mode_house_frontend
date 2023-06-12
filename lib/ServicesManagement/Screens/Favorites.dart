@@ -28,7 +28,7 @@ class _FavoritesState extends State<Favorites> {
 
   Future getBusiness() async {
     //businesses = await httpAccount?.getAllBusiness();
-    businesses = await httpBusinessProfile?.getBusinessProfile();
+    businesses = await httpBusinessProfile?.getAllBusinessProfile();
     setState(() {
       businesses = businesses;
     });

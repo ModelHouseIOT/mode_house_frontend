@@ -27,7 +27,7 @@ class _NotificationState extends State<Notifications> {
   }
 
   Future getBusiness() async {
-    businesses = await httpBusinessProfile?.getBusinessProfile();
+    businesses = await httpBusinessProfile?.getAllBusinessProfile();
     setState(() {
       businesses = businesses;
     });

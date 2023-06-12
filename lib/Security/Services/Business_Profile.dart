@@ -3,13 +3,12 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:model_house/Security/Interfaces/Account.dart';
 import 'package:model_house/Security/Interfaces/BusinessProfile.dart';
+import 'package:model_house/Shared/HttpComon.dart';
 
 class HttpBusinessProfile {
-  final String urlBase = 'https://localhost:7120/api/v1/businessprofile';
   var businessProfile = http.Client();
-  Future<List<BusinessProfile>?> getBusinessProfile() async {
-    String accountUrl = urlBase;
-    var uri = Uri.parse(accountUrl);
+  Future<List<BusinessProfile>?> getAllBusinessProfile() async {
+    var uri = Uri.parse("$httpBase/business_profile");
     var response = await businessProfile.get(uri);
     if (response.statusCode == 200) {
       var json = response.body;
@@ -18,8 +17,7 @@ class HttpBusinessProfile {
   }
 
   Future<BusinessProfile?> getbusinessProfileById(String id) async {
-    final String postUrl = urlBase + "/account" + '/$id';
-    var uri = Uri.parse(postUrl);
+    var uri = Uri.parse("${httpBase}business_profile/account/$id");
     var response = await businessProfile.get(uri, headers: {
       'Content-Type': 'application/json; charset=UTF-8',
       "Accept": "application/json"
@@ -33,8 +31,7 @@ class HttpBusinessProfile {
 
   Future<BusinessProfile?> createProfile(String firstname, String lastname,
       String phonenumber, String gender, int accountId) async {
-    final String accountUrl = urlBase;
-    var uri = Uri.parse(accountUrl);
+    var uri = Uri.parse("${httpBase}business_profile");
     var response = await businessProfile.post(uri,
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
@@ -59,8 +56,7 @@ class HttpBusinessProfile {
       String gender,
       String image,
       int accountId) async {
-    final String postUrl = urlBase + "/$accountId";
-    var uri = Uri.parse(postUrl);
+    var uri = Uri.parse("${httpBase}business_profile/$accountId");
 
     var request = http.MultipartRequest('PUT', uri);
     request.files.add(await http.MultipartFile.fromPath('fotimageo', image));
