@@ -5,10 +5,9 @@ import 'package:model_house/Security/Interfaces/Account.dart';
 import 'package:model_house/Security/Interfaces/BusinessProfile.dart';
 
 class HttpBusinessProfile {
-  final String urlBase = 'https://localhost:7120/api/v1/user';
+  final String urlBase = 'https://localhost:7120/api/v1/businessprofile';
   var businessProfile = http.Client();
   Future<List<BusinessProfile>?> getBusinessProfile() async {
-    print("holi");
     String accountUrl = urlBase;
     var uri = Uri.parse(accountUrl);
     var response = await businessProfile.get(uri);
@@ -25,7 +24,6 @@ class HttpBusinessProfile {
       'Content-Type': 'application/json; charset=UTF-8',
       "Accept": "application/json"
     });
-    print(response.body);
     try {
       return BusinessProfile.fromJson(jsonDecode(response.body));
     } catch (e) {
@@ -35,7 +33,6 @@ class HttpBusinessProfile {
 
   Future<BusinessProfile?> createProfile(String firstname, String lastname,
       String phonenumber, String gender, int accountId) async {
-    print("uri");
     final String accountUrl = urlBase;
     var uri = Uri.parse(accountUrl);
     var response = await businessProfile.post(uri,

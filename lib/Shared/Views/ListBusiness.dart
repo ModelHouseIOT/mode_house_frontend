@@ -1,13 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:model_house/ServicesManagement/Screens/BusinessProfile.dart';
-
+import 'package:model_house/Security/Interfaces/BusinessProfile.dart';
 import '../../Security/Interfaces/Account.dart';
 import '../Widgets/texts/titles.dart';
 
 class ListBusiness extends StatefulWidget {
-  List<Account> accounts;
-  ListBusiness(this.accounts, {Key? key}) : super(key: key);
+  List<BusinessProfile> business;
+  ListBusiness(this.business, {Key? key}) : super(key: key);
 
   @override
   _ListBusinessState createState() => _ListBusinessState();
@@ -18,15 +17,15 @@ class _ListBusinessState extends State<ListBusiness> {
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.builder(
-        itemCount: widget.accounts.length,
+        itemCount: widget.business.length,
         itemBuilder: (context, index) {
-          return cardBusiness(widget.accounts[index]);
+          return cardBusiness(widget.business[index]);
         },
       ),
     );
   }
 
-  Widget cardBusiness(Account account) {
+  Widget cardBusiness(BusinessProfile business) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 3, 20, 3),
       child: Card(
@@ -42,14 +41,17 @@ class _ListBusinessState extends State<ListBusiness> {
                     "https://t1.uc.ltmcdn.com/es/posts/4/7/2/como_planear_una_remodelacion_en_casa_19274_orig.jpg"),
               ),
               Column(
-                children: [Titles(18, "Hoal"), Text("Client and Business")],
+                children: [
+                  Titles(18, business.name),
+                  Text("Client and Business")
+                ],
               ),
               IconButton(
                   onPressed: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (BuildContext context) {
-                          return BusinessProfile(account);
+                          return Container();
                         },
                       ),
                     );

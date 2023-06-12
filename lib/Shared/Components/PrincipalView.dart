@@ -30,7 +30,7 @@ class _PrincipalVireState extends State<PrincipalView> {
 
   void initState() {
     httpAccount = HttpAccount();
-    signIn();
+    //signIn();
     myNavigation = Navigation(currentIndex: (i) {
       setState(() {
         index = i;
@@ -44,7 +44,7 @@ class _PrincipalVireState extends State<PrincipalView> {
     return Scaffold(
       backgroundColor: Colors.white,
       bottomNavigationBar: myNavigation,
-      body: Routes(index, cuenta!),
+      body: Routes(index, widget.account),
     );
   }
 }

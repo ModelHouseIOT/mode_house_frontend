@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../Security/Interfaces/Account.dart';
+import '../../Security/Interfaces/BusinessProfile.dart';
 import '../../Security/Services/Account_Service.dart';
+import '../../Security/Services/Business_Profile.dart';
 import '../../Shared/Views/ListBusiness.dart';
 import '../../Shared/Widgets/texts/titles.dart';
 
@@ -15,16 +17,17 @@ class Favorites extends StatefulWidget {
 }
 
 class _FavoritesState extends State<Favorites> {
-  HttpAccount? httpAccount;
-  List<Account>? businesses;
+  HttpBusinessProfile? httpBusinessProfile;
+  List<BusinessProfile>? businesses;
   void initState() {
-    httpAccount = HttpAccount();
+    httpBusinessProfile = HttpBusinessProfile();
     getBusiness();
     super.initState();
   }
 
   Future getBusiness() async {
     //businesses = await httpAccount?.getAllBusiness();
+    businesses = await httpBusinessProfile?.getBusinessProfile();
     setState(() {
       businesses = businesses;
     });
@@ -39,7 +42,7 @@ class _FavoritesState extends State<Favorites> {
             padding: EdgeInsets.fromLTRB(20, 40, 20, 15),
             child: Titles(28, "Favorites"),
           ),
-          ListBusiness(businesses!)
+          businesses != null ? ListBusiness(businesses!) : Container()
         ],
       ),
     );
