@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:model_house/Security/Interfaces/User.dart';
 import 'package:model_house/Security/Interfaces/UserProfile.dart';
 import 'package:model_house/Security/Services/User_Profile.dart';
 import 'package:model_house/ServicesManagement/Screens/Profile.dart';
@@ -13,8 +14,8 @@ import '../../Shared/Views/Activities.dart';
 import '../../Shared/Views/Perfil.dart';
 
 class Menu extends StatefulWidget {
-  Account account;
-  Menu(this.account, {Key? key}) : super(key: key);
+  User user;
+  Menu(this.user, {Key? key}) : super(key: key);
 
   @override
   _MenuState createState() => _MenuState();
@@ -26,10 +27,10 @@ class _MenuState extends State<Menu> {
 
   Future initialize() async {
     profile =
-        await httpUserProfile?.getUserProfileById(widget.account.id.toString());
+        await httpUserProfile?.getUserProfileById(widget.user.id.toString());
     setState(() {
       profile = profile;
-      print(widget.account.id);
+      print(widget.user.id);
       print(profile);
     });
   }
@@ -46,7 +47,7 @@ class _MenuState extends State<Menu> {
       padding: EdgeInsets.all(15),
       children: [
         profile != null
-            ? Perfil(widget.account, profile!)
+            ? Perfil(widget.user, profile!)
             : Container(
                 margin: EdgeInsets.fromLTRB(10, 20, 20, 10),
                 width: MediaQuery.of(context).size.width,
@@ -55,7 +56,7 @@ class _MenuState extends State<Menu> {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (BuildContext context) {
-                        return FormProfileUser(widget.account);
+                        return FormProfileUser(widget.user);
                       },
                     ),
                   );

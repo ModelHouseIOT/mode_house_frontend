@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:model_house/Security/Interfaces/User.dart';
 import 'package:model_house/Security/Screens/signin.dart';
+import 'package:model_house/Security/Services/User_Service.dart';
 
 import '../../Shared/Widgets/buttons/ActiveButton.dart';
 import '../../Shared/Widgets/buttons/DisabledButton.dart';
@@ -23,21 +25,21 @@ class _SignupState extends State<Signup> {
   final email = TextEditingController();
   final password = TextEditingController();
   final confirm = TextEditingController();
-  String? message;
+  User? user;
   String? code;
 
-  HttpAccount? httpAccount;
+  HttpUser? httpUser;
   void initState() {
-    httpAccount = HttpAccount();
+    httpUser = HttpUser();
     super.initState();
   }
 
   Future signUp() async {
-    message = await httpAccount?.signUp(email.text, password.text);
+    user = await httpUser?.signUp(email.text, password.text);
     setState(() {
-      message = message;
+      user = user;
       code = "12345";
-      if (message != null) {
+      if (user != null) {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (BuildContext context) {

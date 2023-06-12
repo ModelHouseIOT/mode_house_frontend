@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:model_house/Security/Interfaces/Account.dart';
 import 'package:model_house/Security/Interfaces/BusinessProfile.dart';
+import 'package:model_house/Security/Interfaces/User.dart';
 import 'package:model_house/Security/Interfaces/UserProfile.dart';
 import 'package:model_house/Security/Services/Business_Profile.dart';
 import 'package:model_house/Shared/Widgets/buttons/ActiveButton.dart';
@@ -11,8 +12,8 @@ import '../../Security/Services/User_Profile.dart';
 import '../Widgets/texts/titles.dart';
 
 class FormProfileUser extends StatefulWidget {
-  Account account;
-  FormProfileUser(this.account, {Key? key}) : super(key: key);
+  User user;
+  FormProfileUser(this.user, {Key? key}) : super(key: key);
 
   @override
   _FormProfileUserState createState() => _FormProfileUserState();
@@ -33,12 +34,12 @@ class _FormProfileUserState extends State<FormProfileUser> {
 
   Future initialize() async {
     profile = await httpUserProfile?.createProfile(firstname.text,
-        lastname.text, gender.text, phonenumber.text, widget.account.id);
+        lastname.text, gender.text, phonenumber.text, widget.user.id);
     print("SFSA");
     setState(() {
       profile = profile;
       print(profile);
-      print(widget.account.id);
+      print(widget.user.id);
       if (profile != null) {
         showDialog(
             barrierDismissible: false,

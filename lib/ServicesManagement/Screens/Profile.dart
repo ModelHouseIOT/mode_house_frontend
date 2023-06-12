@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:model_house/Security/Interfaces/Account.dart';
+import 'package:model_house/Security/Interfaces/User.dart';
 import 'package:model_house/Security/Interfaces/UserProfile.dart';
 import 'package:model_house/Shared/Views/ProfileBusiness.dart';
 import 'package:model_house/Shared/Views/ProfileUser.dart';
@@ -9,9 +10,9 @@ import 'package:model_house/Shared/Widgets/texts/titles.dart';
 import '../../Security/Services/User_Profile.dart';
 
 class Profile extends StatefulWidget {
-  Account account;
-  UserProfile user;
-  Profile(this.account, this.user, {Key? key}) : super(key: key);
+  User user;
+  UserProfile userProfile;
+  Profile(this.user, this.userProfile, {Key? key}) : super(key: key);
 
   @override
   _ProfileState createState() => _ProfileState();
@@ -36,7 +37,7 @@ class _ProfileState extends State<Profile> {
       ),
       body: ListView(
         children: [
-          ProfileUser(widget.user),
+          ProfileUser(widget.userProfile),
           //widget.account.role == "Business" ? ProfileBusiness() : Container()
         ],
       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:model_house/Security/Interfaces/User.dart';
 import 'package:model_house/Security/Screens/signup.dart';
 
 import '../../Shared/Components/PrincipalView.dart';
@@ -19,7 +20,7 @@ class CodeVerification extends StatefulWidget {
 
 class _CodeVerificationState extends State<CodeVerification> {
   final code = TextEditingController();
-  Account? account;
+  User? user;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,7 +91,7 @@ class _CodeVerificationState extends State<CodeVerification> {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (BuildContext context) {
-          return PrincipalView(account!);
+          return PrincipalView(user!);
         },
       ),
     );

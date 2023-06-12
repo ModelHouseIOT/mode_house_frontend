@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:model_house/Security/Interfaces/Account.dart';
 import 'package:model_house/Security/Interfaces/BusinessProfile.dart';
+import 'package:model_house/Security/Interfaces/User.dart';
 import 'package:model_house/Security/Services/Account_Service.dart';
 import 'package:model_house/Shared/Views/ListBusiness.dart';
 import 'package:model_house/Shared/Widgets/buttons/Input.dart';
@@ -11,8 +12,8 @@ import 'package:model_house/Shared/Widgets/texts/titles.dart';
 import '../../Security/Services/Business_Profile.dart';
 
 class Home extends StatefulWidget {
-  Account account;
-  Home(this.account, {Key? key}) : super(key: key);
+  User user;
+  Home(this.user, {Key? key}) : super(key: key);
 
   @override
   _HomeState createState() => _HomeState();

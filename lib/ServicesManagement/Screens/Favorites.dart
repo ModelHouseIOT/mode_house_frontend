@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:model_house/Security/Interfaces/User.dart';
 
 import '../../Security/Interfaces/Account.dart';
 import '../../Security/Interfaces/BusinessProfile.dart';
@@ -9,8 +10,8 @@ import '../../Shared/Views/ListBusiness.dart';
 import '../../Shared/Widgets/texts/titles.dart';
 
 class Favorites extends StatefulWidget {
-  Account account;
-  Favorites(this.account, {Key? key}) : super(key: key);
+  User user;
+  Favorites(this.user, {Key? key}) : super(key: key);
 
   @override
   _FavoritesState createState() => _FavoritesState();

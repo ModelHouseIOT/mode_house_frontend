@@ -1,14 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:model_house/Security/Interfaces/Account.dart';
+import 'package:model_house/Security/Interfaces/User.dart';
 
 import '../../Security/Services/Account_Service.dart';
 import 'Navigation.dart';
 import 'Routes.dart';
 
 class PrincipalView extends StatefulWidget {
-  Account account;
-  PrincipalView(this.account, {Key? key}) : super(key: key);
+  User user;
+  PrincipalView(this.user, {Key? key}) : super(key: key);
 
   @override
   _PrincipalVireState createState() => _PrincipalVireState();
@@ -44,7 +45,7 @@ class _PrincipalVireState extends State<PrincipalView> {
     return Scaffold(
       backgroundColor: Colors.white,
       bottomNavigationBar: myNavigation,
-      body: Routes(index, widget.account),
+      body: Routes(index, widget.user),
     );
   }
 }

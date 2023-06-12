@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:model_house/Security/Interfaces/User.dart';
 import 'package:model_house/Security/Screens/signup.dart';
 import 'package:model_house/Security/Services/Account_Service.dart';
+import 'package:model_house/Security/Services/User_Service.dart';
 
 import '../../Shared/Components/PrincipalView.dart';
 import '../../Shared/Widgets/buttons/ActiveButton.dart';
@@ -22,23 +24,24 @@ class Signin extends StatefulWidget {
 class _SigninState extends State<Signin> {
   final email = TextEditingController();
   final password = TextEditingController();
-  Account? account;
+  User? user;
 
-  HttpAccount? httpAccount;
+  HttpUser? httpUser;
   void initState() {
-    httpAccount = HttpAccount();
+    httpUser = HttpUser();
     super.initState();
   }
 
   Future signIn() async {
-    account = await httpAccount?.signIn(email.text, password.text);
+    user = await httpUser?.signIn(email.text, password.text);
     setState(() {
-      account = account;
-      if (account != null) {
+      user = user;
+      print(user);
+      if (user != null) {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (BuildContext context) {
-              return PrincipalView(account!);
+              return PrincipalView(user!);
             },
           ),
         );

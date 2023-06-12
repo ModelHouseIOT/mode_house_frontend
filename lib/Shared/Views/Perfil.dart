@@ -1,14 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:model_house/Security/Interfaces/Account.dart';
+import 'package:model_house/Security/Interfaces/User.dart';
 import 'package:model_house/Security/Interfaces/UserProfile.dart';
 import 'package:model_house/ServicesManagement/Screens/Profile.dart';
 import 'package:model_house/Shared/Views/FormProfileUser.dart';
 
 class Perfil extends StatefulWidget {
-  Account account;
-  UserProfile user;
-  Perfil(this.account, this.user, {Key? key}) : super(key: key);
+  User user;
+  UserProfile userProfile;
+  Perfil(this.user, this.userProfile, {Key? key}) : super(key: key);
 
   @override
   _PerfilState createState() => _PerfilState();
@@ -16,8 +17,6 @@ class Perfil extends StatefulWidget {
 
 class _PerfilState extends State<Perfil> {
   void initState() {
-    print(widget.account.userId);
-    print(widget.user.id);
     super.initState();
   }
 
@@ -43,7 +42,9 @@ class _PerfilState extends State<Perfil> {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                     child: Text(
-                      widget.user.firstName + " " + widget.user.lastName,
+                      widget.userProfile.firstName +
+                          " " +
+                          widget.userProfile.lastName,
                       style: TextStyle(
                           color: Color(0XFF02AA8B),
                           fontSize: 19,
@@ -65,14 +66,14 @@ class _PerfilState extends State<Perfil> {
         ? Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) {
-                return Profile(widget.account, widget.user);
+                return Profile(widget.user, widget.userProfile);
               },
             ),
           )
         : Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) {
-                return FormProfileUser(widget.account);
+                return FormProfileUser(widget.user);
               },
             ),
           );

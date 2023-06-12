@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:model_house/Security/Interfaces/BusinessProfile.dart';
+import 'package:model_house/Security/Interfaces/User.dart';
 
 import '../../Security/Interfaces/Account.dart';
 import '../../Security/Services/Account_Service.dart';
@@ -9,8 +10,8 @@ import '../../Shared/Views/ListBusiness.dart';
 import '../../Shared/Widgets/texts/titles.dart';
 
 class Notifications extends StatefulWidget {
-  Account account;
-  Notifications(this.account, {Key? key}) : super(key: key);
+  User user;
+  Notifications(this.user, {Key? key}) : super(key: key);
 
   @override
   _NotificationState createState() => _NotificationState();
