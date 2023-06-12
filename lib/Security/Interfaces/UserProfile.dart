@@ -1,0 +1,47 @@
+import 'dart:convert';
+
+List<UserProfile> userProfileFromJson(String str) => List<UserProfile>.from(
+    json.decode(str).map((x) => UserProfile.fromJson(x)));
+
+String userProfileToJson(List<UserProfile> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+
+class UserProfile {
+  int id;
+  String firstName;
+  String lastName;
+  String gender;
+  String phoneNumber;
+  int userId;
+  String image;
+  String registrationDate;
+  UserProfile(
+      {required this.id,
+      required this.firstName,
+      required this.lastName,
+      required this.gender,
+      required this.phoneNumber,
+      required this.image,
+      required this.userId,
+      required this.registrationDate});
+  factory UserProfile.fromJson(Map<String, dynamic> json) => UserProfile(
+        id: json["id"],
+        firstName: json["firstName"],
+        lastName: json["lastName"],
+        gender: json["gender"],
+        phoneNumber: json["phoneNumber"],
+        image: json["image"],
+        userId: json["userId"],
+        registrationDate: json["registrationDate"],
+      );
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "firstName": firstName,
+        "lastName": lastName,
+        "gender": gender,
+        "phoneNumber": phoneNumber,
+        "image": image,
+        "userId": userId,
+        "registrationDate": registrationDate,
+      };
+}

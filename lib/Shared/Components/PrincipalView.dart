@@ -22,11 +22,12 @@ class _PrincipalVireState extends State<PrincipalView> {
   HttpAccount? httpAccount;
 
   Future signIn() async {
-    cuenta = await httpAccount?.getEmail(widget.account.id.toString());
+    //cuenta = await httpAccount?.getEmail(widget.account.id.toString());
     setState(() {
       cuenta = cuenta;
     });
   }
+
   void initState() {
     httpAccount = HttpAccount();
     signIn();
@@ -37,6 +38,7 @@ class _PrincipalVireState extends State<PrincipalView> {
     });
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

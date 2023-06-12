@@ -22,12 +22,14 @@ class _FavoritesState extends State<Favorites> {
     getBusiness();
     super.initState();
   }
+
   Future getBusiness() async {
-    businesses = await httpAccount?.getAllBusiness();
+    //businesses = await httpAccount?.getAllBusiness();
     setState(() {
       businesses = businesses;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

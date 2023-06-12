@@ -22,12 +22,14 @@ class _NotificationState extends State<Notifications> {
     getBusiness();
     super.initState();
   }
+
   Future getBusiness() async {
-    businesses = await httpAccount?.getAllBusiness();
+    //businesses = await httpAccount?.getAllBusiness();
     setState(() {
       businesses = businesses;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

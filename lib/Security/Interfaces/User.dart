@@ -1,56 +1,39 @@
 import 'dart:convert';
 
-List<UserProfile> userProfileFromJson(String str) => List<UserProfile>.from(
-    json.decode(str).map((x) => UserProfile.fromJson(x)));
+List<User> userFromJson(String str) =>
+    List<User>.from(json.decode(str).map((x) => User.fromJson(x)));
 
-String userProfileToJson(List<UserProfile> data) =>
+String userToJson(List<User> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class UserProfile {
+class User {
   int id;
-  String firstName;
-  String lastName;
-  String gender;
-  String phoneNumber;
-  int accountId;
-  String image;
-  bool accountStatus;
-  String lastLogin;
-  String registrationDate;
-  UserProfile({
-    required this.id,
-    required this.firstName,
-    required this.lastName,
-    required this.gender,
-    required this.phoneNumber,
-    required this.accountId,
-    required this.image,
-    required this.accountStatus,
-    required this.lastLogin,
-    required this.registrationDate,
-  });
-  factory UserProfile.fromJson(Map<String, dynamic> json) => UserProfile(
+  String emailAddress;
+  String password;
+  String role;
+  String isActive;
+  String token;
+  User(
+      {required this.id,
+      required this.emailAddress,
+      required this.password,
+      required this.role,
+      required this.isActive,
+      required this.token});
+  factory User.fromJson(Map<String, dynamic> json) => User(
         id: json["id"],
-        firstName: json["firstName"],
-        lastName: json["lastName"],
-        image: json["image"],
-        gender: json["gender"],
-        phoneNumber: json["phoneNumber"],
-        registrationDate: json["registrationDate"],
-        lastLogin: json["lastLogin"],
-        accountStatus: json["accountStatus"],
-        accountId: json["accountId"],
+        emailAddress: json["emailAddress"],
+        password: json["password"],
+        role: json["role"],
+        isActive: json["isActive"],
+        token: json["token"],
       );
   Map<String, dynamic> toJson() => {
         "id": id,
-        "firstName": firstName,
-        "lastName": lastName,
-        "gender": gender,
-        "phoneNumber": phoneNumber,
-        "accountId": accountId,
-        "image": image,
-        "accountStatus": accountStatus,
-        "lastLogin": lastLogin,
-        "registrationDate": registrationDate,
+        "emailAddress": emailAddress,
+        "password": password,
+        "role": role,
+        "isActive": isActive,
+        "token": token
       };
 }

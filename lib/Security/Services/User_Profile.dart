@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:model_house/Security/Interfaces/Account.dart';
 import 'package:model_house/Security/Interfaces/BusinessProfile.dart';
-import 'package:model_house/Security/Interfaces/User.dart';
+import 'package:model_house/Security/Interfaces/UserProfile.dart';
 
 class HttpUserProfile {
   final String urlBase = 'https://localhost:7120/api/v1/user';

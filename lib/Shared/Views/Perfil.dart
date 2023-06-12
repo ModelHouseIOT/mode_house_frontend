@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:model_house/Security/Interfaces/Account.dart';
-import 'package:model_house/Security/Interfaces/User.dart';
+import 'package:model_house/Security/Interfaces/UserProfile.dart';
 import 'package:model_house/ServicesManagement/Screens/Profile.dart';
 import 'package:model_house/Shared/Views/FormProfileUser.dart';
 
@@ -37,15 +37,14 @@ class _PerfilState extends State<Perfil> {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                     child: Text(
-                      widget.user.firstName  + " " + widget.user.lastName,
+                      widget.user.firstName + " " + widget.user.lastName,
                       style: TextStyle(
                           color: Color(0XFF02AA8B),
                           fontSize: 19,
                           fontWeight: FontWeight.w600),
                     ),
                   ),
-                  Text(widget.account.emailAddress,
-                      style: TextStyle(color: Color(0XFF02AA8B)))
+                  Text("hooal", style: TextStyle(color: Color(0XFF02AA8B)))
                 ],
               )
             ],

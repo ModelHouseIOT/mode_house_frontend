@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:model_house/Security/Interfaces/Account.dart';
 import 'package:model_house/Security/Interfaces/BusinessProfile.dart';
-import 'package:model_house/Security/Interfaces/User.dart';
+import 'package:model_house/Security/Interfaces/UserProfile.dart';
 import 'package:model_house/Security/Services/Business_Profile.dart';
 import 'package:model_house/Shared/Widgets/buttons/ActiveButton.dart';
 import 'package:model_house/Shared/Widgets/buttons/Input.dart';

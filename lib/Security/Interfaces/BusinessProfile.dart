@@ -9,50 +9,46 @@ String businessProfileToJson(List<BusinessProfile> data) =>
 
 class BusinessProfile {
   int id;
-  String first_name;
-  String last_name;
-  String gender;
-  String phone_number;
-  int account_id;
+  String address;
+  String description;
   String image;
-  bool account_status;
-  String last_login;
-  String registration_date;
+  String name;
+  String phoneBusiness;
+  int webSite;
+  bool accountId;
+  String registrationDate;
   BusinessProfile({
     required this.id,
-    required this.first_name,
-    required this.last_name,
-    required this.gender,
-    required this.phone_number,
-    required this.account_id,
+    required this.address,
+    required this.description,
     required this.image,
-    required this.account_status,
-    required this.last_login,
-    required this.registration_date,
+    required this.name,
+    required this.phoneBusiness,
+    required this.webSite,
+    required this.accountId,
+    required this.registrationDate,
   });
   factory BusinessProfile.fromJson(Map<String, dynamic> json) =>
       BusinessProfile(
         id: json["id"],
-        first_name: json["first_name"],
-        last_name: json["last_name"],
-        gender: json["gender"],
-        phone_number: json["phone_number"],
-        account_id: json["account_id"],
+        address: json["address"],
+        description: json["description"],
         image: json["image"],
-        account_status: json["account_status"],
-        last_login: json["tokenlast_login"],
-        registration_date: json["registration_date"],
+        name: json["name"],
+        phoneBusiness: json["phoneBusiness"],
+        webSite: json["webSite"],
+        accountId: json["accountId"],
+        registrationDate: json["registrationDate"],
       );
   Map<String, dynamic> toJson() => {
         "id": id,
-        "first_name": first_name,
-        "last_name": last_name,
-        "gender": gender,
-        "phone_number": phone_number,
-        "account_id": account_id,
+        "address": address,
+        "description": description,
         "image": image,
-        "account_status": account_status,
-        "last_login": last_login,
-        "registration_date": registration_date,
+        "name": name,
+        "phoneBusiness": phoneBusiness,
+        "webSite": webSite,
+        "accountId": accountId,
+        "registrationDate": registrationDate,
       };
 }

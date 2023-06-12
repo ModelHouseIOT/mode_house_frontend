@@ -24,14 +24,13 @@ class _ListBusinessState extends State<ListBusiness> {
         },
       ),
     );
-
   }
-  Widget cardBusiness(Account account){
+
+  Widget cardBusiness(Account account) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 3, 20, 3),
       child: Card(
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         child: Container(
           padding: EdgeInsets.all(15),
           child: Row(
@@ -43,10 +42,7 @@ class _ListBusinessState extends State<ListBusiness> {
                     "https://t1.uc.ltmcdn.com/es/posts/4/7/2/como_planear_una_remodelacion_en_casa_19274_orig.jpg"),
               ),
               Column(
-                children: [
-                  Titles(18, account.emailAddress),
-                  Text("Client and Business")
-                ],
+                children: [Titles(18, "Hoal"), Text("Client and Business")],
               ),
               IconButton(
                   onPressed: () {

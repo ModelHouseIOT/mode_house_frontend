@@ -24,8 +24,9 @@ class _HomeState extends State<Home> {
     getBusiness();
     super.initState();
   }
+
   Future getBusiness() async {
-    businesses = await httpAccount?.getAllBusiness();
+    //businesses = await httpAccount?.getAllBusiness();
     setState(() {
       businesses = businesses;
     });

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:model_house/Security/Interfaces/User.dart';
+import 'package:model_house/Security/Interfaces/UserProfile.dart';
 import 'package:model_house/Security/Services/User_Profile.dart';
 import 'package:model_house/ServicesManagement/Screens/Profile.dart';
 import 'package:model_house/Shared/Views/FormProfileUser.dart';
@@ -25,13 +25,15 @@ class _MenuState extends State<Menu> {
   UserProfile? profile;
 
   Future initialize() async {
-    profile = await httpUserProfile?.getUserProfileById(widget.account.id.toString());
+    profile =
+        await httpUserProfile?.getUserProfileById(widget.account.id.toString());
     setState(() {
       profile = profile;
       print(widget.account.id);
       print(profile);
     });
   }
+
   void initState() {
     httpUserProfile = HttpUserProfile();
     initialize();
@@ -43,20 +45,22 @@ class _MenuState extends State<Menu> {
     return ListView(
       padding: EdgeInsets.all(15),
       children: [
-        profile != null? Perfil(widget.account, profile!): Container(
-          margin: EdgeInsets.fromLTRB(10, 20, 20, 10),
-          width: MediaQuery.of(context).size.width,
-          height: 45,
-          child: ActiveButton(12,"Edit Profile", (){
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (BuildContext context) {
-                  return FormProfileUser(widget.account);
-                },
+        profile != null
+            ? Perfil(widget.account, profile!)
+            : Container(
+                margin: EdgeInsets.fromLTRB(10, 20, 20, 10),
+                width: MediaQuery.of(context).size.width,
+                height: 45,
+                child: ActiveButton(12, "Edit Profile", () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (BuildContext context) {
+                        return FormProfileUser(widget.account);
+                      },
+                    ),
+                  );
+                }, 18),
               ),
-            );
-          }, 18),
-        ),
         Activities(),
         Padding(
           padding: const EdgeInsets.fromLTRB(0, 40, 0, 40),
