@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:model_house/Security/Interfaces/User.dart';
 import 'package:model_house/Security/Screens/signin.dart';
 import 'package:model_house/Security/Services/User_Service.dart';
+import 'package:model_house/Shared/Components/PrincipalView.dart';
 
 import '../../Shared/Widgets/buttons/ActiveButton.dart';
 import '../../Shared/Widgets/buttons/DisabledButton.dart';
@@ -38,12 +39,11 @@ class _SignupState extends State<Signup> {
     user = await httpUser?.signUp(email.text, password.text);
     setState(() {
       user = user;
-      code = "12345";
       if (user != null) {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (BuildContext context) {
-              return CodeVerification(code!);
+              return PrincipalView(user!);
             },
           ),
         );

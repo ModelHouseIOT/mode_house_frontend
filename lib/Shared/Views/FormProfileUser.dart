@@ -35,11 +35,8 @@ class _FormProfileUserState extends State<FormProfileUser> {
   Future initialize() async {
     profile = await httpUserProfile?.createProfile(firstname.text,
         lastname.text, gender.text, phonenumber.text, widget.user.id);
-    print("SFSA");
     setState(() {
       profile = profile;
-      print(profile);
-      print(widget.user.id);
       if (profile != null) {
         showDialog(
             barrierDismissible: false,
