@@ -7,23 +7,23 @@ String userProfileToJson(List<UserProfile> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class UserProfile {
-  int id;
+  int? id;
   String firstName;
   String lastName;
   String gender;
   String phoneNumber;
-  int userId;
-  String image;
-  String registrationDate;
+  int? userId;
+  String? image;
+  String? registrationDate;
   UserProfile(
-      {required this.id,
+      {this.id,
       required this.firstName,
       required this.lastName,
       required this.gender,
       required this.phoneNumber,
-      required this.image,
-      required this.userId,
-      required this.registrationDate});
+      this.image,
+      this.userId,
+      this.registrationDate});
   factory UserProfile.fromJson(Map<String, dynamic> json) => UserProfile(
         id: json["id"],
         firstName: json["firstName"],

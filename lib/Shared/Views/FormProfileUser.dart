@@ -25,7 +25,9 @@ class _FormProfileUserState extends State<FormProfileUser> {
   final gender = TextEditingController();
   final phonenumber = TextEditingController();
   HttpUserProfile? httpUserProfile;
-  UserProfile? profile;
+  UserProfile profile =
+      UserProfile(firstName: '', gender: '', lastName: '', phoneNumber: '');
+  UserProfile? response;
 
   void initState() {
     httpUserProfile = HttpUserProfile();
@@ -33,11 +35,16 @@ class _FormProfileUserState extends State<FormProfileUser> {
   }
 
   Future initialize() async {
-    profile = await httpUserProfile?.createProfile(firstname.text,
-        lastname.text, gender.text, phonenumber.text, widget.user.id);
+    profile.firstName = firstname.text;
+    profile.lastName = firstname.text;
+    profile.gender = gender.text;
+    profile.phoneNumber = phonenumber.text;
+    print(profile);
+    print("profile");
+    response = await httpUserProfile?.createProfile(widget.user.id, profile);
     setState(() {
-      profile = profile;
-      if (profile != null) {
+      response = response;
+      if (response != null) {
         showDialog(
             barrierDismissible: false,
             context: context,
@@ -104,7 +111,7 @@ class _FormProfileUserState extends State<FormProfileUser> {
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-                child: Input(Icons.abc, "Insert Lasta Name", false, lastname),
+                child: Input(Icons.abc, "Insert Last Name", false, lastname),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),

@@ -98,15 +98,6 @@ class _ProfileUserState extends State<ProfileUser> {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0, 12, 0, 12),
                       child: Row(
-                        children: [
-                          Titles(13, "Registration Date "),
-                          Text(widget.user.registrationDate)
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 12, 0, 12),
-                      child: Row(
                         children: [Titles(13, "Address: "), Text("Av. ...")],
                       ),
                     )

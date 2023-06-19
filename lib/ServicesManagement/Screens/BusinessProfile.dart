@@ -27,8 +27,7 @@ class _BusinessProfileState extends State<BusinessProfile> {
   }
 
   Future getUserProfile() async {
-    userProfile =
-        await httpUserProfile?.getUserProfileById(widget.account.id.toString());
+    userProfile = await httpUserProfile?.getUserProfileById(widget.account.id);
     setState(() {
       userProfile = userProfile;
     });
@@ -128,15 +127,6 @@ class _BusinessProfileState extends State<BusinessProfile> {
                     ),
                     Column(
                       children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 12, 0, 12),
-                          child: Row(
-                            children: [
-                              Titles(13, "Registration Date "),
-                              Text(userProfile!.registrationDate)
-                            ],
-                          ),
-                        ),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 12, 0, 12),
                           child: Row(

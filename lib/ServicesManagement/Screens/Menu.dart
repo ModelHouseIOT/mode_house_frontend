@@ -26,8 +26,7 @@ class _MenuState extends State<Menu> {
   UserProfile? profile;
 
   Future initialize() async {
-    profile =
-        await httpUserProfile?.getUserProfileById(widget.user.id.toString());
+    profile = await httpUserProfile?.getUserProfileById(widget.user.id);
     setState(() {
       profile = profile;
       print(widget.user.id);

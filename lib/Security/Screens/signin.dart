@@ -5,6 +5,7 @@ import 'package:model_house/Security/Interfaces/User.dart';
 import 'package:model_house/Security/Screens/signup.dart';
 import 'package:model_house/Security/Services/Account_Service.dart';
 import 'package:model_house/Security/Services/User_Service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../Shared/Components/PrincipalView.dart';
 import '../../Shared/Widgets/buttons/ActiveButton.dart';
@@ -34,16 +35,29 @@ class _SigninState extends State<Signin> {
 
   Future signIn() async {
     user = await httpUser?.signIn(email.text, password.text);
+    final persitence = await SharedPreferences.getInstance();
     setState(() {
       user = user;
       print(user);
       if (user != null) {
+        persitence.setString("token", user!.token);
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (BuildContext context) {
               return PrincipalView(user!);
             },
           ),
+        );
+      } else {
+        AlertDialog(
+          title: const Text("The email or password is incorrect"),
+          actions: [
+            TextButton(
+                onPressed: () {
+                  print("Corrige");
+                },
+                child: const Text("Ok"))
+          ],
         );
       }
     });
