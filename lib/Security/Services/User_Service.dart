@@ -6,7 +6,6 @@ import 'package:model_house/Shared/HttpComon.dart';
 class HttpUser {
   var user = http.Client();
 
-  // ignore: body_might_complete_normally_nullable
   Future<User?> signIn(String emailAddress, String password) async {
     final String accountUrl = "$httpBase/user/login";
     var uri = Uri.parse(accountUrl);
@@ -24,10 +23,9 @@ class HttpUser {
     if (response.statusCode == 200) {
       return User.fromJson(jsonDecode(response.body));
     }
-    return null;
+    //return null;
   }
 
-  // ignore: body_might_complete_normally_nullable
   Future<User?> signUp(String emailAddress, String password) async {
     final String postUrl = "$httpBase/user/register";
     var uri = Uri.parse(postUrl);
