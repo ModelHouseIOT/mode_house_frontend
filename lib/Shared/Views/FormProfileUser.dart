@@ -107,20 +107,23 @@ class _FormProfileUserState extends State<FormProfileUser> {
             children: [
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-                child: Input(Icons.abc, "Insert First Name", false, firstname),
+                child: Input(Icons.abc, "Insert First Name", false, firstname,
+                    false, TextInputType.text),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-                child: Input(Icons.abc, "Insert Last Name", false, lastname),
+                child: Input(Icons.abc, "Insert Last Name", false, lastname,
+                    false, TextInputType.text),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-                child: Input(Icons.abc, "Insert Gender", false, gender),
+                child: Input(Icons.abc, "Insert Gender", false, gender, false,
+                    TextInputType.text),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-                child:
-                    Input(Icons.abc, "Insert Phone Number", false, phonenumber),
+                child: Input(Icons.abc, "Insert Phone Number", false,
+                    phonenumber, false, TextInputType.number),
               ),
               Container(
                   margin: const EdgeInsets.fromLTRB(0, 20, 0, 20),

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:model_house/Security/Interfaces/User.dart';
@@ -11,9 +10,6 @@ import '../../Shared/Widgets/buttons/DisabledButton.dart';
 import '../../Shared/Widgets/buttons/Input.dart';
 import '../../Shared/Widgets/texts/subtitles.dart';
 import '../../Shared/Widgets/texts/titles.dart';
-import '../Interfaces/Account.dart';
-import '../Services/Account_Service.dart';
-import 'codeVerification.dart';
 
 class Signup extends StatefulWidget {
   const Signup({Key? key}) : super(key: key);
@@ -82,7 +78,7 @@ class _SignupState extends State<Signup> {
                   children: [
                     Subtitles("Email Address"),
                     Input(Icons.visibility, "Type your Email Address", false,
-                        email),
+                        email, false, TextInputType.emailAddress),
                   ],
                 ),
               ),
@@ -92,8 +88,8 @@ class _SignupState extends State<Signup> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Subtitles("Password"),
-                    Input(
-                        Icons.visibility, "Type your Password", true, password),
+                    Input(Icons.visibility, "Type your Password", true,
+                        password, true, TextInputType.visiblePassword),
                   ],
                 ),
               ),
@@ -104,7 +100,7 @@ class _SignupState extends State<Signup> {
                   children: [
                     Subtitles("Confirm Password"),
                     Input(Icons.visibility, "Type Confirm Password", true,
-                        confirm),
+                        confirm, true, TextInputType.visiblePassword),
                   ],
                 ),
               ),

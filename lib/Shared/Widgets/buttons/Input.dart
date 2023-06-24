@@ -6,8 +6,12 @@ class Input extends StatefulWidget {
   String? text;
   IconData icon;
   bool? visibility;
-  TextEditingController? emailAddress;
-  Input(this.icon, this.text, this.visibility, this.emailAddress, {Key? key})
+  TextEditingController? variable;
+  bool? obscureText;
+  TextInputType? inputType;
+  Input(this.icon, this.text, this.visibility, this.variable, this.obscureText,
+      this.inputType,
+      {Key? key})
       : super(key: key);
 
   @override
@@ -19,8 +23,9 @@ class _InputState extends State<Input> {
   Widget build(BuildContext context) {
     if (widget.visibility!) {
       return TextField(
-        controller: widget.emailAddress,
-        keyboardType: TextInputType.visiblePassword,
+        controller: widget.variable,
+        obscureText: widget.obscureText!,
+        keyboardType: widget.inputType,
         style: GoogleFonts.poppins(fontSize: 14, color: Color(0XFF02AA8B)),
         decoration: InputDecoration(
             hintText: widget.text,
@@ -33,9 +38,11 @@ class _InputState extends State<Input> {
                 borderSide: BorderSide(color: Color(0XFF02AA8B))),
             suffixIcon: IconButton(
               onPressed: () {
-                //setState(() {
-                //  isVisivilityPassword = !isVisivilityPassword;
-                //});
+                setState(() {
+                  widget.inputType == TextInputType.visiblePassword
+                      ? widget.obscureText = !widget.obscureText!
+                      : null;
+                });
               },
               icon: Icon(
                 widget.icon,
@@ -46,7 +53,7 @@ class _InputState extends State<Input> {
     }
     return TextField(
       keyboardType: TextInputType.visiblePassword,
-      controller: widget.emailAddress,
+      controller: widget.variable,
       style: GoogleFonts.poppins(fontSize: 14, color: Color(0XFF02AA8B)),
       decoration: InputDecoration(
         hintText: widget.text,

@@ -47,7 +47,8 @@ class _HomeState extends State<Home> {
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(20, 15, 20, 0),
-            child: Input(Icons.search, "Search on Model House", true, algo),
+            child: Input(Icons.search, "Search on Model House", true, algo,
+                false, TextInputType.text),
           ),
           businesses != null ? ListBusiness(businesses!) : Container()
         ],

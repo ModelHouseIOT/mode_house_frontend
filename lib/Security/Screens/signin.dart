@@ -94,7 +94,7 @@ class _SigninState extends State<Signin> {
                   children: [
                     Subtitles("Email Address"),
                     Input(Icons.visibility, "Type your Email Address", false,
-                        email),
+                        email, false, TextInputType.emailAddress),
                   ],
                 ),
               ),
@@ -104,8 +104,8 @@ class _SigninState extends State<Signin> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Subtitles("Email Password"),
-                    Input(
-                        Icons.visibility, "Type your Password", true, password),
+                    Input(Icons.visibility, "Type your Password", true,
+                        password, true, TextInputType.visiblePassword),
                   ],
                 ),
               ),
