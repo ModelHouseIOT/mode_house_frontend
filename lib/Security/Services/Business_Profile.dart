@@ -31,7 +31,7 @@ class HttpBusinessProfile {
 
   Future<BusinessProfile?> createProfile(String firstname, String lastname,
       String phonenumber, String gender, int accountId) async {
-    var uri = Uri.parse("${httpBase}business_profile");
+    var uri = Uri.parse("$httpBase/business_profile");
     var response = await businessProfile.post(uri,
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
@@ -56,7 +56,7 @@ class HttpBusinessProfile {
       String gender,
       String image,
       int accountId) async {
-    var uri = Uri.parse("${httpBase}business_profile/$accountId");
+    var uri = Uri.parse("$httpBase/business_profile/$accountId");
 
     var request = http.MultipartRequest('PUT', uri);
     request.files.add(await http.MultipartFile.fromPath('fotimageo', image));

@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-List<Request> userProfileFromJson(String str) =>
+List<Request> requestFromJson(String str) =>
     List<Request>.from(json.decode(str).map((x) => Request.fromJson(x)));
 
-String userProfileToJson(List<Request> data) =>
+String requestToJson(List<Request> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class Request {
