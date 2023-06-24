@@ -5,75 +5,65 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../Shared/HttpComon.dart';
-import '../Interfaces/Proposal.dart';
+import '../Interfaces/ProyectResource.dart';
 
-class HttpProposal {
-  var proposal = http.Client();
+class HttpProyectResource {
+  var proyectResource = http.Client();
 
-  Future<Proposal?> getByRequestId(Long requestId) async {
+  Future<List<ProyectResource>?> getAllByProposalId(Long proposalId) async {
     final persitence = await SharedPreferences.getInstance();
-    var uri = Uri.parse("$httpBase/request/$requestId/proposal");
-    var response = await proposal.get(uri, headers: {
+    var uri = Uri.parse("$httpBase/proposal/$proposalId/project_activity");
+    var response = await proyectResource.get(uri, headers: {
       'Content-Type': 'application/json; charset=UTF-8',
       "Accept": "application/json",
       'Authorization': 'Bearer ${persitence.getString("token")}'
     });
     if (response.statusCode == 200) {
-      return Proposal.fromJson(jsonDecode(response.body));
+      return proyectResourceFromJson(jsonDecode(response.body));
     }
     return null;
   }
 
-  Future<Proposal?> createByRequestId(int requestId, String description,
-      Float price, String status, bool isResponse) async {
+  Future<ProyectResource?> createProyectResource(
+      int proposalId, String description, int quantity, String state) async {
     final persitence = await SharedPreferences.getInstance();
-    var uri = Uri.parse("$httpBase/request/$requestId/proposal");
-    var response = await proposal.post(uri,
+    var uri = Uri.parse("$httpBase/proposal/$proposalId/project_activity");
+    var response = await proyectResource.post(uri,
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
           "Accept": "application/json",
           'Authorization': 'Bearer ${persitence.getString("token")}'
         },
         body: jsonEncode({
-          'price': price,
           'description': description,
-          'status': status,
-          'isResponse': isResponse
+          'quantity': quantity,
+          'state': state
         }));
     if (response.statusCode == 200) {
-      return Proposal.fromJson(jsonDecode(response.body));
+      return ProyectResource.fromJson(jsonDecode(response.body));
     }
     return null;
   }
 
-  Future<Proposal?> updateRequest(
-      int id,
-      String proposalDate,
-      String description,
-      Float price,
-      String status,
-      bool isResponse,
-      String responseDate) async {
+  Future<ProyectResource?> updateProyectResource(
+      int id, String description, int quantity, String state) async {
     final persitence = await SharedPreferences.getInstance();
-    final String postUrl = "$httpBase/user_profile/$id";
+    final String postUrl = "$httpBase/project_activity/$id";
     var uri = Uri.parse(postUrl);
 
-    var response = await proposal.post(uri,
+    var response = await proyectResource.post(uri,
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
           "Accept": "application/json",
           'Authorization': 'Bearer ${persitence.getString("token")}'
         },
         body: jsonEncode({
-          'proposalDate': proposalDate,
           'description': description,
-          'price': price,
-          'status': status,
-          'isResponse': isResponse,
-          'responseDate': responseDate
+          'quantity': quantity,
+          'state': state
         }));
     if (response.statusCode == 200) {
-      return Proposal.fromJson(jsonDecode(response.body));
+      return ProyectResource.fromJson(jsonDecode(response.body));
     }
     return null;
   }

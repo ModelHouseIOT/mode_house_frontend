@@ -23,6 +23,7 @@ class HttpRequest {
       var json = response.body;
       return requestFromJson(json);
     }
+    return null;
   }
 
   Future<List<Request>?> getAllUserProfileIdAndStatus(
@@ -38,6 +39,7 @@ class HttpRequest {
       var json = response.body;
       return requestFromJson(json);
     }
+    return null;
   }
 
   Future<Request?> createRequest(int userId, int businessId, String status,
@@ -58,6 +60,7 @@ class HttpRequest {
     if (response.statusCode == 200) {
       return Request.fromJson(jsonDecode(response.body));
     }
+    return null;
   }
 
   Future<Request?> updateUserProfile(int id, String status) async {

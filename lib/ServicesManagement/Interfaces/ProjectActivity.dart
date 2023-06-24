@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'dart:ffi';
 
-List<ProyectActivity> userProfileFromJson(String str) =>
+List<ProyectActivity> proyectActivityFromJson(String str) =>
     List<ProyectActivity>.from(
         json.decode(str).map((x) => ProyectActivity.fromJson(x)));
 
-String userProfileToJson(List<ProyectActivity> data) =>
+String proyectActivityToJson(List<ProyectActivity> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class ProyectActivity {
