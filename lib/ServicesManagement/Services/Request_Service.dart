@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:ffi';
 
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -11,7 +10,7 @@ class HttpRequest {
   var request = http.Client();
 
   Future<List<Request>?> getAllBusinessProfileIdAndStatus(
-      Long id, String status) async {
+      int id, String status) async {
     final persitence = await SharedPreferences.getInstance();
     var uri = Uri.parse("$httpBase/business/$id/status/$status/request");
     var response = await request.get(uri, headers: {
@@ -27,7 +26,7 @@ class HttpRequest {
   }
 
   Future<List<Request>?> getAllUserProfileIdAndStatus(
-      Long id, String status) async {
+      int id, String status) async {
     final persitence = await SharedPreferences.getInstance();
     var uri = Uri.parse("$httpBase/user/$id/status/$status/request");
     var response = await request.get(uri, headers: {

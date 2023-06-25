@@ -1,20 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:model_house/Security/Interfaces/Account.dart';
 import 'package:model_house/Security/Interfaces/User.dart';
 import 'package:model_house/Security/Interfaces/UserProfile.dart';
-import 'package:model_house/Shared/Views/ProfileBusiness.dart';
 import 'package:model_house/Shared/Views/ProfileUser.dart';
 import 'package:model_house/Shared/Widgets/texts/titles.dart';
 
-import '../../Security/Services/User_Profile.dart';
-
+// ignore: must_be_immutable
 class Profile extends StatefulWidget {
   User user;
   UserProfile userProfile;
   Profile(this.user, this.userProfile, {Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _ProfileState createState() => _ProfileState();
 }
 
@@ -28,7 +26,7 @@ class _ProfileState extends State<Profile> {
         centerTitle: true,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios,
             color: Color(0XFF02AA8B),
           ),

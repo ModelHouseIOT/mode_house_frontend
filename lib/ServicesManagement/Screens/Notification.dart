@@ -2,24 +2,26 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:model_house/Security/Interfaces/BusinessProfile.dart';
 import 'package:model_house/Security/Interfaces/User.dart';
-
-import '../../Security/Interfaces/Account.dart';
-import '../../Security/Services/Account_Service.dart';
+import 'package:model_house/Security/Interfaces/UserProfile.dart';
 import '../../Security/Services/Business_Profile.dart';
 import '../../Shared/Views/ListBusiness.dart';
 import '../../Shared/Widgets/texts/titles.dart';
 
+// ignore: must_be_immutable
 class Notifications extends StatefulWidget {
   User user;
-  Notifications(this.user, {Key? key}) : super(key: key);
+  UserProfile? userProfile;
+  Notifications(this.user, this.userProfile, {Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _NotificationState createState() => _NotificationState();
 }
 
 class _NotificationState extends State<Notifications> {
   HttpBusinessProfile? httpBusinessProfile;
   List<BusinessProfile>? businesses;
+  @override
   void initState() {
     httpBusinessProfile = HttpBusinessProfile();
     getBusiness();
@@ -39,10 +41,12 @@ class _NotificationState extends State<Notifications> {
       body: Column(
         children: [
           Padding(
-            padding: EdgeInsets.fromLTRB(20, 40, 20, 15),
+            padding: const EdgeInsets.fromLTRB(20, 40, 20, 15),
             child: Titles(28, "Notification"),
           ),
-          businesses != null ? ListBusiness(businesses!) : Container()
+          businesses != null
+              ? ListBusiness(businesses!, widget.userProfile)
+              : Container()
         ],
       ),
     );

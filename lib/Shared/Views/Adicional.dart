@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:model_house/Shared/Widgets/texts/titles.dart';
 
@@ -8,6 +7,7 @@ class Adicional extends StatefulWidget {
   const Adicional({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _AdicionalState createState() => _AdicionalState();
 }
 

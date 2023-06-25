@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Navigation extends StatefulWidget {
@@ -6,6 +5,7 @@ class Navigation extends StatefulWidget {
   const Navigation({Key? key, required this.currentIndex}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _NavigationState createState() => _NavigationState();
 }
 
@@ -27,7 +27,7 @@ class _NavigationState extends State<Navigation> {
       iconSize: 35.0,
       selectedFontSize: 18.0,
       unselectedFontSize: 14,
-      backgroundColor: Color(0XFF152031),
+      backgroundColor: const Color(0XFF152031),
       items: const [
         BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
         BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'Favorite'),

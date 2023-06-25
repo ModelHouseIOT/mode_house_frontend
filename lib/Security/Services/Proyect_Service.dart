@@ -4,50 +4,50 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../Shared/HttpComon.dart';
-import '../Interfaces/ProjectActivity.dart';
+import '../Interfaces/Proyect.dart';
 
-class HttpProyectActivity {
-  var proyectActivity = http.Client();
+class HttpProyect {
+  var proyect = http.Client();
 
-  Future<List<ProyectActivity>?> getAllByProposalId(int proposalId) async {
+  Future<List<Proyect>?> getAllByBusinessId(int businessId) async {
     final persitence = await SharedPreferences.getInstance();
-    var uri = Uri.parse("$httpBase/proposal/$proposalId/project_activity");
-    var response = await proyectActivity.get(uri, headers: {
+    var uri = Uri.parse("$httpBase/business_profile/$businessId/project");
+    var response = await proyect.get(uri, headers: {
       'Content-Type': 'application/json; charset=UTF-8',
       "Accept": "application/json",
       'Authorization': 'Bearer ${persitence.getString("token")}'
     });
     if (response.statusCode == 200) {
-      return proyectActivityFromJson(jsonDecode(response.body));
+      return proyectFromJson(response.body);
     }
     return null;
   }
 
-  Future<ProyectActivity?> createProyectActivity(
-      int proposalId, String status, String name, String description) async {
+  Future<Proyect?> createProject(
+      int id, String title, String description, String image) async {
     final persitence = await SharedPreferences.getInstance();
-    var uri = Uri.parse("$httpBase/proposal/$proposalId/project_activity");
-    var response = await proyectActivity.post(uri,
+    var uri = Uri.parse("$httpBase/project/$id/profile");
+    var response = await proyect.post(uri,
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
           "Accept": "application/json",
           'Authorization': 'Bearer ${persitence.getString("token")}'
         },
         body: jsonEncode(
-            {'status': status, 'name': name, 'description': description}));
+            {'title': title, 'description': description, 'image': image}));
     if (response.statusCode == 200) {
-      return ProyectActivity.fromJson(jsonDecode(response.body));
+      return Proyect.fromJson(jsonDecode(response.body));
     }
     return null;
   }
 
-  Future<ProyectActivity?> updateProyectActivity(
+  Future<Proyect?> updateProyect(
       int id, String status, String name, String description) async {
     final persitence = await SharedPreferences.getInstance();
-    final String postUrl = "$httpBase/project_activity/$id";
+    final String postUrl = "$httpBase/project/$id";
     var uri = Uri.parse(postUrl);
 
-    var response = await proyectActivity.post(uri,
+    var response = await proyect.post(uri,
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
           "Accept": "application/json",
@@ -59,7 +59,7 @@ class HttpProyectActivity {
           'responseDate': description
         }));
     if (response.statusCode == 200) {
-      return ProyectActivity.fromJson(jsonDecode(response.body));
+      return Proyect.fromJson(jsonDecode(response.body));
     }
     return null;
   }

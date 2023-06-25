@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:ffi';
 
 List<ProyectActivity> proyectActivityFromJson(String str) =>
     List<ProyectActivity>.from(
@@ -15,7 +14,7 @@ class ProyectActivity {
   String? status;
   String? startedAt;
   String? completedAt;
-  Float? completionPercent;
+  int? completionPercent;
   ProyectActivity(
       {this.id,
       this.name,

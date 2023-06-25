@@ -15,6 +15,7 @@ class Signup extends StatefulWidget {
   const Signup({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _SignupState createState() => _SignupState();
 }
 
@@ -32,19 +33,28 @@ class _SignupState extends State<Signup> {
   }
 
   Future signUp() async {
-    user = await httpUser?.signUp(email.text, password.text);
-    setState(() {
-      user = user;
-      if (user != null) {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (BuildContext context) {
-              return PrincipalView(user!);
-            },
-          ),
-        );
-      }
-    });
+    if (password.text == confirm.text) {
+      user = await httpUser?.signUp(email.text, password.text);
+      setState(() {
+        user = user;
+        if (user != null) {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (BuildContext context) {
+                return PrincipalView(user!);
+              },
+            ),
+          );
+        }
+      });
+    } else {
+      const snackBar = SnackBar(
+          content: Text('Passwords are not the same'),
+          duration: Duration(seconds: 2),
+          // ignore: use_full_hex_values_for_flutter_colors
+          backgroundColor: Color(0xff7da4a3e));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }
   }
 
   @override
@@ -105,12 +115,13 @@ class _SignupState extends State<Signup> {
                 ),
               ),
               Container(
+                padding: const EdgeInsets.all(0),
                 width: MediaQuery.of(context).size.width,
                 height: 45,
                 child: ActiveButton(10, "Sign Up", signUp, 19),
               ),
               Container(
-                margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
+                margin: const EdgeInsets.fromLTRB(0, 20, 0, 20),
                 width: MediaQuery.of(context).size.width,
                 height: 45,
                 child: DisabledButton(10, "Sign Up With Google", () {}),
@@ -140,7 +151,7 @@ class _SignupState extends State<Signup> {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (BuildContext context) {
-          return Signin();
+          return const Signin();
         },
       ),
     );

@@ -1,8 +1,6 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:model_house/Security/Interfaces/Account.dart';
-import 'package:model_house/Security/Interfaces/BusinessProfile.dart';
 import 'package:model_house/Security/Interfaces/UserProfile.dart';
 import 'package:model_house/Shared/HttpComon.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -15,10 +13,8 @@ class HttpUserProfile {
     var response = await businessProfile.get(uri, headers: {
       'Content-Type': 'application/json; charset=UTF-8',
       'Accept': 'application/json',
-      'Authorization':
-          'Bearer ${persitence.getString("token") == null ? null : persitence.getString("token")}'
+      'Authorization': 'Bearer ${persitence.getString("token")}'
     });
-    print(persitence.getString("token"));
     if (response.statusCode == 200) {
       return UserProfile.fromJson(jsonDecode(response.body));
     }
@@ -33,8 +29,7 @@ class HttpUserProfile {
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
           "Accept": "application/json",
-          'Authorization':
-              'Bearer ${persitence.getString("token") == null ? null : persitence.getString("token")}'
+          'Authorization': 'Bearer ${persitence.getString("token")}'
         },
         body: jsonEncode(userProfile));
     print(response.body);

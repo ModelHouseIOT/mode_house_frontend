@@ -13,11 +13,14 @@ import '../../Shared/Views/Adicional.dart';
 import '../../Shared/Views/Activities.dart';
 import '../../Shared/Views/Perfil.dart';
 
+// ignore: must_be_immutable
 class Menu extends StatefulWidget {
   User user;
-  Menu(this.user, {Key? key}) : super(key: key);
+  UserProfile? userProfile;
+  Menu(this.user, this.userProfile, {Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _MenuState createState() => _MenuState();
 }
 
@@ -29,11 +32,10 @@ class _MenuState extends State<Menu> {
     profile = await httpUserProfile?.getUserProfileById(widget.user.id);
     setState(() {
       profile = profile;
-      print(widget.user.id);
-      print(profile);
     });
   }
 
+  @override
   void initState() {
     httpUserProfile = HttpUserProfile();
     initialize();
@@ -43,12 +45,12 @@ class _MenuState extends State<Menu> {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      padding: EdgeInsets.all(15),
+      padding: const EdgeInsets.all(15),
       children: [
         profile != null
             ? Perfil(widget.user, profile!)
             : Container(
-                margin: EdgeInsets.fromLTRB(10, 20, 20, 10),
+                margin: const EdgeInsets.fromLTRB(10, 20, 20, 10),
                 width: MediaQuery.of(context).size.width,
                 height: 45,
                 child: ActiveButton(12, "Edit Profile", () {
@@ -61,9 +63,9 @@ class _MenuState extends State<Menu> {
                   );
                 }, 18),
               ),
-        Activities(),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(0, 40, 0, 40),
+        const Activities(),
+        const Padding(
+          padding: EdgeInsets.fromLTRB(0, 40, 0, 40),
           child: Adicional(),
         ),
         MaterialButton(
@@ -73,7 +75,7 @@ class _MenuState extends State<Menu> {
           color: const Color(0XFF02AA8B),
           onPressed: () {},
           child: Container(
-            padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
+            padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
             child: Row(children: const <Widget>[
               Padding(
                 padding: EdgeInsets.fromLTRB(10, 0, 20, 0),

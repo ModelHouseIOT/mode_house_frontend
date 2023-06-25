@@ -1,15 +1,17 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:model_house/Security/Interfaces/BusinessProfile.dart';
+import 'package:model_house/Security/Interfaces/UserProfile.dart';
 import 'package:model_house/ServicesManagement/Screens/BusinessContent,.dart';
-import '../../Security/Interfaces/Account.dart';
 import '../Widgets/texts/titles.dart';
 
+// ignore: must_be_immutable
 class ListBusiness extends StatefulWidget {
   List<BusinessProfile> business;
-  ListBusiness(this.business, {Key? key}) : super(key: key);
+  UserProfile? userProfile;
+  ListBusiness(this.business, this.userProfile, {Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _ListBusinessState createState() => _ListBusinessState();
 }
 
@@ -34,31 +36,27 @@ class _ListBusinessState extends State<ListBusiness> {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) {
-                return BusinessContent(business);
+                return BusinessContent(business, widget.userProfile);
               },
             ),
           );
         },
         textColor: Colors.white,
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Card(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
           child: Container(
-            padding: EdgeInsets.all(15),
+            padding: const EdgeInsets.all(15),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 CircleAvatar(
                   radius: 40,
-                  backgroundImage: NetworkImage(
-                      "https://t1.uc.ltmcdn.com/es/posts/4/7/2/como_planear_una_remodelacion_en_casa_19274_orig.jpg"),
+                  backgroundImage: NetworkImage(business.image),
                 ),
                 Column(
-                  children: [
-                    Titles(18, business.name),
-                    Text("Client and Business")
-                  ],
+                  children: [Titles(18, business.name), Text(business.address)],
                 ),
                 IconButton(
                     onPressed: () {
@@ -70,7 +68,7 @@ class _ListBusinessState extends State<ListBusiness> {
                         ),
                       );
                     },
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.navigate_next_outlined,
                       color: Color.fromARGB(255, 52, 54, 52),
                       size: 40,

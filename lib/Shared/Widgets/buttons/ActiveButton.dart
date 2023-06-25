@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+// ignore: must_be_immutable
 class ActiveButton extends StatefulWidget {
   String? text;
   Function pressed;
@@ -11,6 +11,7 @@ class ActiveButton extends StatefulWidget {
       : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _ActiveButtonState createState() => _ActiveButtonState();
 }
 

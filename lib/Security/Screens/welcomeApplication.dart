@@ -41,14 +41,14 @@ class _WelcomeApplicationState extends State<WelcomeApplication> {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
-                    child: Container(
+                    child: SizedBox(
                         width: 120,
                         height: 45,
                         child: ActiveButton(5, "Sign In", redirectSignIn, 19)),
                   ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
-                    child: Container(
+                    child: SizedBox(
                         width: 120,
                         height: 45,
                         child: ActiveButton(5, "Sign Up", redirectSignUp, 19)),

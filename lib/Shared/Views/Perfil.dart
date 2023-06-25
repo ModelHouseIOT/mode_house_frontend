@@ -6,28 +6,31 @@ import 'package:model_house/Security/Interfaces/UserProfile.dart';
 import 'package:model_house/ServicesManagement/Screens/Profile.dart';
 import 'package:model_house/Shared/Views/FormProfileUser.dart';
 
+// ignore: must_be_immutable
 class Perfil extends StatefulWidget {
   User user;
   UserProfile userProfile;
   Perfil(this.user, this.userProfile, {Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _PerfilState createState() => _PerfilState();
 }
 
 class _PerfilState extends State<Perfil> {
+  @override
   void initState() {
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: MediaQuery.of(context).size.width,
       child: Card(
-        margin: EdgeInsets.fromLTRB(0, 30, 0, 30),
+        margin: const EdgeInsets.fromLTRB(0, 30, 0, 30),
         child: MaterialButton(
-          padding: EdgeInsets.all(15),
+          padding: const EdgeInsets.all(15),
           onPressed: redirectPerfil,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -42,16 +45,15 @@ class _PerfilState extends State<Perfil> {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                     child: Text(
-                      widget.userProfile.firstName +
-                          " " +
-                          widget.userProfile.lastName,
-                      style: TextStyle(
+                      "${widget.userProfile.firstName} ${widget.userProfile.lastName}",
+                      style: const TextStyle(
                           color: Color(0XFF02AA8B),
                           fontSize: 19,
                           fontWeight: FontWeight.w600),
                     ),
                   ),
-                  Text("hooal", style: TextStyle(color: Color(0XFF02AA8B)))
+                  const Text("hooal",
+                      style: TextStyle(color: Color(0XFF02AA8B)))
                 ],
               )
             ],
@@ -62,6 +64,7 @@ class _PerfilState extends State<Perfil> {
   }
 
   void redirectPerfil() {
+    // ignore: unnecessary_null_comparison
     widget.user != null
         ? Navigator.of(context).push(
             MaterialPageRoute(

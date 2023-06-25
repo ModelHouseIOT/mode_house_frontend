@@ -1,18 +1,18 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:model_house/Security/Interfaces/UserProfile.dart';
 import 'package:model_house/Security/Services/User_Profile.dart';
 
 import '../../Security/Interfaces/Account.dart';
-import '../../Shared/Widgets/buttons/ActiveButton.dart';
 import '../../Shared/Widgets/texts/subtitles.dart';
 import '../../Shared/Widgets/texts/titles.dart';
 
+// ignore: must_be_immutable
 class BusinessProfile extends StatefulWidget {
   Account account;
   BusinessProfile(this.account, {Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _BusinessProfileState createState() => _BusinessProfileState();
 }
 
@@ -20,6 +20,7 @@ class _BusinessProfileState extends State<BusinessProfile> {
   HttpUserProfile? httpUserProfile;
   UserProfile? userProfile;
 
+  @override
   void initState() {
     httpUserProfile = HttpUserProfile();
     getUserProfile();
@@ -42,7 +43,7 @@ class _BusinessProfileState extends State<BusinessProfile> {
         centerTitle: true,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios,
             color: Color(0XFF02AA8B),
           ),
@@ -59,7 +60,7 @@ class _BusinessProfileState extends State<BusinessProfile> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    CircleAvatar(
+                    const CircleAvatar(
                       radius: 45,
                       backgroundImage: NetworkImage(
                           "https://i.pinimg.com/550x/9e/f8/b3/9ef8b3ef5693f6282d9b11d998e04059.jpg"),
@@ -67,8 +68,8 @@ class _BusinessProfileState extends State<BusinessProfile> {
                     Column(
                       children: [
                         Subtitles(userProfile?.firstName),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
+                        const Padding(
+                          padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
                           child: Text("Client and Business"),
                         ),
                       ],
@@ -132,7 +133,7 @@ class _BusinessProfileState extends State<BusinessProfile> {
                           child: Row(
                             children: [
                               Titles(13, "Address: "),
-                              Text("Av. ...")
+                              const Text("Av. ...")
                             ],
                           ),
                         )
@@ -144,7 +145,7 @@ class _BusinessProfileState extends State<BusinessProfile> {
             ],
           ),
           Container(
-            padding: EdgeInsets.fromLTRB(20, 0, 20, 30),
+            padding: const EdgeInsets.fromLTRB(20, 0, 20, 30),
             child: Column(children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -156,12 +157,12 @@ class _BusinessProfileState extends State<BusinessProfile> {
                 child: Container(
                   height: 250,
                   width: 300,
-                  padding: EdgeInsets.all(30),
+                  padding: const EdgeInsets.all(30),
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Titles(20, "you do not have projects"),
-                        Icon(
+                        const Icon(
                           Icons.sentiment_dissatisfied_outlined,
                           size: 80,
                           color: Color(0XFF02AA8B),

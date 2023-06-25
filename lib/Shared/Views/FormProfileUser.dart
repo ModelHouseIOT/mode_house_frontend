@@ -1,21 +1,19 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:model_house/Security/Interfaces/Account.dart';
-import 'package:model_house/Security/Interfaces/BusinessProfile.dart';
 import 'package:model_house/Security/Interfaces/User.dart';
 import 'package:model_house/Security/Interfaces/UserProfile.dart';
-import 'package:model_house/Security/Services/Business_Profile.dart';
 import 'package:model_house/Shared/Widgets/buttons/ActiveButton.dart';
 import 'package:model_house/Shared/Widgets/buttons/Input.dart';
 
 import '../../Security/Services/User_Profile.dart';
 import '../Widgets/texts/titles.dart';
 
+// ignore: must_be_immutable
 class FormProfileUser extends StatefulWidget {
   User user;
   FormProfileUser(this.user, {Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _FormProfileUserState createState() => _FormProfileUserState();
 }
 
@@ -29,6 +27,7 @@ class _FormProfileUserState extends State<FormProfileUser> {
       UserProfile(firstName: '', gender: '', lastName: '', phoneNumber: '');
   UserProfile? response;
 
+  @override
   void initState() {
     httpUserProfile = HttpUserProfile();
     super.initState();
@@ -39,8 +38,6 @@ class _FormProfileUserState extends State<FormProfileUser> {
     profile.lastName = firstname.text;
     profile.gender = gender.text;
     profile.phoneNumber = phonenumber.text;
-    print(profile);
-    print("profile");
     response = await httpUserProfile?.createProfile(widget.user.id, profile);
     setState(() {
       response = response;
@@ -93,7 +90,7 @@ class _FormProfileUserState extends State<FormProfileUser> {
         centerTitle: true,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios,
             color: Color(0XFF02AA8B),
           ),
@@ -102,7 +99,7 @@ class _FormProfileUserState extends State<FormProfileUser> {
       ),
       body: Center(
         child: Container(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Column(
             children: [
               Padding(

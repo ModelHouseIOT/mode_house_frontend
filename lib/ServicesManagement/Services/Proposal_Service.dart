@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:ffi';
 
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -10,7 +9,7 @@ import '../Interfaces/Proposal.dart';
 class HttpProposal {
   var proposal = http.Client();
 
-  Future<Proposal?> getByRequestId(Long requestId) async {
+  Future<Proposal?> getByRequestId(int requestId) async {
     final persitence = await SharedPreferences.getInstance();
     var uri = Uri.parse("$httpBase/request/$requestId/proposal");
     var response = await proposal.get(uri, headers: {
@@ -25,7 +24,7 @@ class HttpProposal {
   }
 
   Future<Proposal?> createByRequestId(int requestId, String description,
-      Float price, String status, bool isResponse) async {
+      int price, String status, bool isResponse) async {
     final persitence = await SharedPreferences.getInstance();
     var uri = Uri.parse("$httpBase/request/$requestId/proposal");
     var response = await proposal.post(uri,
@@ -50,7 +49,7 @@ class HttpProposal {
       int id,
       String proposalDate,
       String description,
-      Float price,
+      int price,
       String status,
       bool isResponse,
       String responseDate) async {

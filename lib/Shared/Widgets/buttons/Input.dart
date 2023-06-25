@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+// ignore: must_be_immutable
 class Input extends StatefulWidget {
   String? text;
   IconData icon;
@@ -15,6 +15,7 @@ class Input extends StatefulWidget {
       : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _InputState createState() => _InputState();
 }
 
@@ -26,7 +27,8 @@ class _InputState extends State<Input> {
         controller: widget.variable,
         obscureText: widget.obscureText!,
         keyboardType: widget.inputType,
-        style: GoogleFonts.poppins(fontSize: 14, color: Color(0XFF02AA8B)),
+        style:
+            GoogleFonts.poppins(fontSize: 14, color: const Color(0XFF02AA8B)),
         decoration: InputDecoration(
             hintText: widget.text,
             hintStyle: const TextStyle(color: Color(0XFF02AA8B)),
@@ -46,7 +48,7 @@ class _InputState extends State<Input> {
               },
               icon: Icon(
                 widget.icon,
-                color: Color(0XFF02AA8B),
+                color: const Color(0XFF02AA8B),
               ),
             )),
       );
@@ -54,7 +56,7 @@ class _InputState extends State<Input> {
     return TextField(
       keyboardType: TextInputType.visiblePassword,
       controller: widget.variable,
-      style: GoogleFonts.poppins(fontSize: 14, color: Color(0XFF02AA8B)),
+      style: GoogleFonts.poppins(fontSize: 14, color: const Color(0XFF02AA8B)),
       decoration: InputDecoration(
         hintText: widget.text,
         hintStyle: const TextStyle(color: Color(0XFF02AA8B)),

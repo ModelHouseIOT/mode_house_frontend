@@ -14,6 +14,7 @@ class HttpBusinessProfile {
       var json = response.body;
       return businessProfileFromJson(json);
     }
+    return null;
   }
 
   Future<BusinessProfile?> getbusinessProfileById(String id) async {
@@ -27,6 +28,7 @@ class HttpBusinessProfile {
     } catch (e) {
       print("Error");
     }
+    return null;
   }
 
   Future<BusinessProfile?> createProfile(String firstname, String lastname,
@@ -47,6 +49,7 @@ class HttpBusinessProfile {
     if (response.statusCode == 200) {
       return BusinessProfile.fromJson(jsonDecode(response.body));
     }
+    return null;
   }
 
   Future<BusinessProfile?> updateBusinessProfile(
@@ -77,5 +80,6 @@ class HttpBusinessProfile {
     } catch (e) {
       print("Algo salio mal");
     }
+    return null;
   }
 }

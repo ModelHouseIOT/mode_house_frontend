@@ -1,12 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:model_house/Shared/Widgets/texts/titles.dart';
-import '../../Shared/Widgets/texts/subtitles.dart';
 
 class Activities extends StatefulWidget {
   const Activities({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _ActivitiesState createState() => _ActivitiesState();
 }
 

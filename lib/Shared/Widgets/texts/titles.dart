@@ -11,12 +11,7 @@ class Titles extends StatefulWidget {
 }
 
 class _TitlesState extends State<Titles> {
-  //@override
-  //void initState() {
-  //  widget.algo;
-  //  super.initState();
-  //}
-
+  @override
   Widget build(BuildContext context) {
     return Text(
       widget.text!,

@@ -28,6 +28,7 @@ class _SigninState extends State<Signin> {
   User? user;
 
   HttpUser? httpUser;
+  @override
   void initState() {
     httpUser = HttpUser();
     super.initState();
@@ -38,7 +39,6 @@ class _SigninState extends State<Signin> {
     final persitence = await SharedPreferences.getInstance();
     setState(() {
       user = user;
-      print(user);
       if (user != null) {
         persitence.setString("token", user!.token);
         Navigator.of(context).push(
@@ -49,16 +49,21 @@ class _SigninState extends State<Signin> {
           ),
         );
       } else {
-        AlertDialog(
-          title: const Text("The email or password is incorrect"),
-          actions: [
-            TextButton(
-                onPressed: () {
-                  print("Corrige");
-                },
-                child: const Text("Ok"))
-          ],
-        );
+        showDialog(
+            barrierDismissible: false,
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: const Text("The email or password is incorrect"),
+                actions: [
+                  TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text("Ok"))
+                ],
+              );
+            });
       }
     });
   }
@@ -109,13 +114,13 @@ class _SigninState extends State<Signin> {
                   ],
                 ),
               ),
-              Container(
+              SizedBox(
                 width: MediaQuery.of(context).size.width,
                 height: 45,
                 child: ActiveButton(10, "Sign In", signIn, 19),
               ),
               Container(
-                margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
+                margin: const EdgeInsets.fromLTRB(0, 20, 0, 20),
                 width: MediaQuery.of(context).size.width,
                 height: 45,
                 child: DisabledButton(10, "Sign In With Google", () {}),
@@ -145,7 +150,7 @@ class _SigninState extends State<Signin> {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (BuildContext context) {
-          return Signup();
+          return const Signup();
         },
       ),
     );

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:ffi';
 
 List<Proposal> proposalFromJson(String str) =>
     List<Proposal>.from(json.decode(str).map((x) => Proposal.fromJson(x)));
@@ -11,7 +10,7 @@ class Proposal {
   int? id;
   String? proposalDate;
   String? description;
-  Float? price;
+  int? price;
   String? status;
   bool? isResponse;
   String? responseDate;
