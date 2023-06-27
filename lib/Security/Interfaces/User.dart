@@ -9,14 +9,14 @@ String userToJson(List<User> data) =>
 class User {
   int id;
   String emailAddress;
-  String password;
+  String? password;
   String role;
   bool isActive;
-  String token;
+  String? token;
   User(
       {required this.id,
       required this.emailAddress,
-      required this.password,
+      this.password,
       required this.role,
       required this.isActive,
       required this.token});

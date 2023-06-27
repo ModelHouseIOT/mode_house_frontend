@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:model_house/Security/Interfaces/User.dart';
 import 'package:model_house/Security/Screens/signin.dart';
 import 'package:model_house/Security/Services/User_Service.dart';
-import 'package:model_house/Shared/Components/PrincipalView.dart';
 
 import '../../Shared/Widgets/buttons/ActiveButton.dart';
 import '../../Shared/Widgets/buttons/DisabledButton.dart';
@@ -41,7 +40,7 @@ class _SignupState extends State<Signup> {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) {
-                return PrincipalView(user!);
+                return const Signin();
               },
             ),
           );

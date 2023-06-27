@@ -15,8 +15,8 @@ class BusinessProfile {
   String name;
   String phoneBusiness;
   String webSite;
-  int accountId;
-  String registrationDate;
+  int? accountId;
+  String? foundationDate;
   BusinessProfile({
     required this.id,
     required this.address,
@@ -25,8 +25,8 @@ class BusinessProfile {
     required this.name,
     required this.phoneBusiness,
     required this.webSite,
-    required this.accountId,
-    required this.registrationDate,
+    this.accountId,
+    this.foundationDate,
   });
   factory BusinessProfile.fromJson(Map<String, dynamic> json) =>
       BusinessProfile(
@@ -38,7 +38,7 @@ class BusinessProfile {
         phoneBusiness: json["phoneBusiness"],
         webSite: json["webSite"],
         accountId: json["accountId"],
-        registrationDate: json["registrationDate"],
+        foundationDate: json["foundationDate"],
       );
   Map<String, dynamic> toJson() => {
         "id": id,
@@ -49,6 +49,6 @@ class BusinessProfile {
         "phoneBusiness": phoneBusiness,
         "webSite": webSite,
         "accountId": accountId,
-        "registrationDate": registrationDate,
+        "foundationDate": foundationDate,
       };
 }

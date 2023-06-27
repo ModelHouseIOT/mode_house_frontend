@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:model_house/Security/Interfaces/User.dart';
 import 'package:model_house/Security/Screens/signup.dart';
-import 'package:model_house/Security/Services/Account_Service.dart';
 import 'package:model_house/Security/Services/User_Service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -13,7 +12,6 @@ import '../../Shared/Widgets/buttons/DisabledButton.dart';
 import '../../Shared/Widgets/buttons/Input.dart';
 import '../../Shared/Widgets/texts/subtitles.dart';
 import '../../Shared/Widgets/texts/titles.dart';
-import '../Interfaces/Account.dart';
 
 class Signin extends StatefulWidget {
   const Signin({Key? key}) : super(key: key);
@@ -40,7 +38,7 @@ class _SigninState extends State<Signin> {
     setState(() {
       user = user;
       if (user != null) {
-        persitence.setString("token", user!.token);
+        persitence.setString("token", user!.token!);
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (BuildContext context) {

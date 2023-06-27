@@ -12,7 +12,6 @@ class UserProfile {
   String lastName;
   String gender;
   String phoneNumber;
-  int? userId;
   String? image;
   String? registrationDate;
   UserProfile(
@@ -22,7 +21,6 @@ class UserProfile {
       required this.gender,
       required this.phoneNumber,
       this.image,
-      this.userId,
       this.registrationDate});
   factory UserProfile.fromJson(Map<String, dynamic> json) => UserProfile(
         id: json["id"],
@@ -31,7 +29,6 @@ class UserProfile {
         gender: json["gender"],
         phoneNumber: json["phoneNumber"],
         image: json["image"],
-        userId: json["userId"],
         registrationDate: json["registrationDate"],
       );
   Map<String, dynamic> toJson() => {
@@ -41,7 +38,6 @@ class UserProfile {
         "gender": gender,
         "phoneNumber": phoneNumber,
         "image": image,
-        "userId": userId,
         "registrationDate": registrationDate,
       };
 }

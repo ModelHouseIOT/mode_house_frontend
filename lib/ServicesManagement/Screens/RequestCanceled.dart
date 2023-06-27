@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:model_house/Security/Interfaces/User.dart';
 import 'package:model_house/Security/Interfaces/UserProfile.dart';
 
 import '../../Security/Interfaces/BusinessProfile.dart';
-import '../../Security/Services/Business_Profile.dart';
-import '../../Shared/Views/ListBusiness.dart';
 import '../../Shared/Widgets/texts/titles.dart';
 import '../Interfaces/RequestInterface.dart';
 import '../Services/Request_Service.dart';
