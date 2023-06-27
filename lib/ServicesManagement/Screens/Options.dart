@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:model_house/Security/Interfaces/Account.dart';
+import 'package:model_house/Security/Interfaces/BusinessProfile.dart';
 import 'package:model_house/Security/Interfaces/User.dart';
 import 'package:model_house/Security/Interfaces/UserProfile.dart';
+import 'package:model_house/Security/Services/Account_Service.dart';
+import 'package:model_house/Security/Services/Business_Profile.dart';
 import 'package:model_house/ServicesManagement/Screens/PendingProposal.dart';
 import 'package:model_house/ServicesManagement/Interfaces/RequestInterface.dart';
 import 'package:model_house/ServicesManagement/Screens/PendingRequest.dart';
@@ -31,19 +35,52 @@ class _FavoritesState extends State<Favorites> {
     "Request Finished"
   ];
   HttpRequest? httpRequest;
+  HttpAccount? httpAccount;
+  HttpBusinessProfile? httpBusinessProfile;
+  BusinessProfile? businessProfile;
+  Account? account;
+
   List<RequestInterface>? requestsPending;
   List<RequestInterface>? requestsPendingProposal;
   List<RequestInterface>? inProcess;
   List<RequestInterface>? canceled;
   List<RequestInterface>? finished;
+
   @override
   void initState() {
     httpRequest = HttpRequest();
-    widget.userProfile != null ? getRequest() : null;
+    httpAccount = HttpAccount();
+    httpBusinessProfile = HttpBusinessProfile();
+    if (widget.userProfile != null && widget.user.role != "business") {
+      getRequestUserProfile();
+    } else {
+      getAccount();
+    }
     super.initState();
   }
 
-  Future getRequest() async {
+  Future getAccount() async {
+    account = await httpAccount?.getAccountByUserId(widget.user.id);
+    account != null
+        ? setState(() {
+            account = account;
+            getBusinessProfile();
+          })
+        : null;
+  }
+
+  Future getBusinessProfile() async {
+    businessProfile =
+        await httpBusinessProfile?.getbusinessProfileAccountById(account!.id);
+    if (businessProfile != null) {
+      setState(() {
+        businessProfile = businessProfile;
+        getRequestBusinessProfile();
+      });
+    }
+  }
+
+  Future getRequestUserProfile() async {
     requestsPending = await httpRequest?.getAllUserProfileIdAndStatus(
         widget.userProfile!.id!, "PENDING");
     requestsPendingProposal = await httpRequest?.getAllUserProfileIdAndStatus(
@@ -54,6 +91,26 @@ class _FavoritesState extends State<Favorites> {
         widget.userProfile!.id!, "CANCELED");
     finished = await httpRequest?.getAllUserProfileIdAndStatus(
         widget.userProfile!.id!, "FINISHED");
+    setState(() {
+      requestsPending = requestsPending;
+      requestsPendingProposal = requestsPendingProposal;
+      inProcess = inProcess;
+      canceled = canceled;
+      finished = finished;
+    });
+  }
+
+  Future getRequestBusinessProfile() async {
+    requestsPending = await httpRequest?.getAllBusinessProfileIdAndStatus(
+        businessProfile!.id, "PENDING");
+    requestsPendingProposal = await httpRequest?.getAllUserProfileIdAndStatus(
+        businessProfile!.id, "PENDING_PROPOSAL");
+    inProcess = await httpRequest?.getAllUserProfileIdAndStatus(
+        businessProfile!.id, "IN_PROCESS");
+    canceled = await httpRequest?.getAllUserProfileIdAndStatus(
+        businessProfile!.id, "CANCELED");
+    finished = await httpRequest?.getAllUserProfileIdAndStatus(
+        businessProfile!.id, "FINISHED");
     setState(() {
       requestsPending = requestsPending;
       requestsPendingProposal = requestsPendingProposal;
@@ -93,7 +150,9 @@ class _FavoritesState extends State<Favorites> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => PendingProposal(
-                                  requestsPendingProposal, widget.userProfile)),
+                                  requestsPendingProposal,
+                                  widget.userProfile,
+                                  businessProfile)),
                         );
                       }
                       if (typesOptions[index] == "Pending Request") {
@@ -101,31 +160,33 @@ class _FavoritesState extends State<Favorites> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => PendingRequest(
-                                  requestsPending, widget.userProfile!)),
+                                  requestsPending,
+                                  widget.userProfile!,
+                                  businessProfile)),
                         );
                       }
                       if (typesOptions[index] == "Request In Process") {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => RequestInProcess(
-                                  inProcess, widget.userProfile)),
+                              builder: (context) => RequestInProcess(inProcess,
+                                  widget.userProfile, businessProfile)),
                         );
                       }
                       if (typesOptions[index] == "Request Canceled") {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => RequestCanceled(
-                                  canceled, widget.userProfile)),
+                              builder: (context) => RequestCanceled(canceled,
+                                  widget.userProfile, businessProfile)),
                         );
                       }
                       if (typesOptions[index] == "Request Finished") {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => RequestFinished(
-                                  finished, widget.userProfile)),
+                              builder: (context) => RequestFinished(finished,
+                                  widget.userProfile, businessProfile)),
                         );
                       }
                     },

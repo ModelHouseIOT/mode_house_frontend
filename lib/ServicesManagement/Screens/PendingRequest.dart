@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:model_house/Security/Interfaces/BusinessProfile.dart';
 import 'package:model_house/Security/Interfaces/UserProfile.dart';
 
 import '../../Shared/Widgets/texts/titles.dart';
@@ -8,8 +9,11 @@ import '../Services/Request_Service.dart';
 
 class PendingRequest extends StatefulWidget {
   List<RequestInterface>? requests;
-  UserProfile userProfile;
-  PendingRequest(this.requests, this.userProfile, {Key? key}) : super(key: key);
+  UserProfile? userProfile;
+  BusinessProfile? businessProfile;
+  PendingRequest(this.requests, this.userProfile, this.businessProfile,
+      {Key? key})
+      : super(key: key);
 
   @override
   _PendingRequestState createState() => _PendingRequestState();
@@ -30,7 +34,7 @@ class _PendingRequestState extends State<PendingRequest> {
     request = await httpRequest?.changeStatus(requestInterface.id!, status);
     if (request != null) {
       requestsPending = await httpRequest?.getAllUserProfileIdAndStatus(
-          widget.userProfile.id!, "PENDING");
+          widget.userProfile!.id!, "PENDING");
       setState(() {
         request = request;
         widget.requests = requestsPending;
@@ -91,9 +95,11 @@ class _PendingRequestState extends State<PendingRequest> {
                           CircleAvatar(
                             radius: 50,
                             child: Image.network(
-                              widget.userProfile.image!,
-                              width: 80, // Ancho de la imagen
-                              height: 80, // Alto de la imagen
+                              widget.businessProfile == null
+                                  ? widget.userProfile!.image!
+                                  : widget.businessProfile!.image,
+                              width: 80,
+                              height: 80,
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -105,77 +111,85 @@ class _PendingRequestState extends State<PendingRequest> {
                                   16, widget.requests![index].description),
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(15.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.grey.withOpacity(
-                                            0.5), // Color de la sombra
-                                        spreadRadius:
-                                            2, // Radio de expansión de la sombra
-                                        blurRadius:
-                                            5, // Radio de desenfoque de la sombra
-                                        offset: Offset(0,
-                                            3), // Desplazamiento en la posición x y y de la sombra
+                          widget.businessProfile != null
+                              ? Padding(
+                                  padding: const EdgeInsets.all(15.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.grey.withOpacity(
+                                                  0.5), // Color de la sombra
+                                              spreadRadius:
+                                                  2, // Radio de expansión de la sombra
+                                              blurRadius:
+                                                  5, // Radio de desenfoque de la sombra
+                                              offset: Offset(0,
+                                                  3), // Desplazamiento en la posición x y y de la sombra
+                                            ),
+                                          ],
+                                        ),
+                                        child: MaterialButton(
+                                            color: const Color(0xFF1FB440),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                            ),
+                                            minWidth: 120,
+                                            height: 50,
+                                            onPressed: () {
+                                              changeStatus(
+                                                  widget.requests![index],
+                                                  "PENDING_PROPOSAL");
+                                            },
+                                            child: const Text(
+                                              "Accept",
+                                              style: TextStyle(
+                                                  fontSize: 17,
+                                                  color: Colors.white),
+                                            )),
+                                      ),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.grey.withOpacity(
+                                                  0.5), // Color de la sombra
+                                              spreadRadius:
+                                                  2, // Radio de expansión de la sombra
+                                              blurRadius:
+                                                  5, // Radio de desenfoque de la sombra
+                                              offset: Offset(0,
+                                                  3), // Desplazamiento en la posición x y y de la sombra
+                                            ),
+                                          ],
+                                        ),
+                                        child: MaterialButton(
+                                            color: const Color(0xFFDF3737),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                            ),
+                                            minWidth: 120,
+                                            height: 50,
+                                            onPressed: () {
+                                              changeStatus(
+                                                  widget.requests![index],
+                                                  "CANCELED");
+                                            },
+                                            child: const Text("Reject",
+                                                style: TextStyle(
+                                                    fontSize: 17,
+                                                    color: Colors.white))),
                                       ),
                                     ],
                                   ),
-                                  child: MaterialButton(
-                                      color: const Color(0xFF1FB440),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      minWidth: 120,
-                                      height: 50,
-                                      onPressed: () {
-                                        changeStatus(widget.requests![index],
-                                            "PENDING_PROPOSAL");
-                                      },
-                                      child: const Text(
-                                        "Accept",
-                                        style: TextStyle(
-                                            fontSize: 17, color: Colors.white),
-                                      )),
-                                ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.grey.withOpacity(
-                                            0.5), // Color de la sombra
-                                        spreadRadius:
-                                            2, // Radio de expansión de la sombra
-                                        blurRadius:
-                                            5, // Radio de desenfoque de la sombra
-                                        offset: Offset(0,
-                                            3), // Desplazamiento en la posición x y y de la sombra
-                                      ),
-                                    ],
-                                  ),
-                                  child: MaterialButton(
-                                      color: const Color(0xFFDF3737),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      minWidth: 120,
-                                      height: 50,
-                                      onPressed: () {
-                                        changeStatus(widget.requests![index],
-                                            "CANCELED");
-                                      },
-                                      child: const Text("Reject",
-                                          style: TextStyle(
-                                              fontSize: 17,
-                                              color: Colors.white))),
-                                ),
-                              ],
-                            ),
-                          )
+                                )
+                              : Container()
                         ],
                       ),
                     ),

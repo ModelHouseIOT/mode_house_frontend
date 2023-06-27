@@ -18,6 +18,7 @@ class HttpRequest {
       "Accept": "application/json",
       'Authorization': 'Bearer ${persitence.getString("token")}'
     });
+    print(response.body);
     if (response.statusCode == 200) {
       var json = response.body;
       return requestFromJson(json);
@@ -34,7 +35,6 @@ class HttpRequest {
       "Accept": "application/json",
       'Authorization': 'Bearer ${persitence.getString("token")}'
     });
-    print(response.body);
     if (response.statusCode == 200) {
       var json = response.body;
       return requestFromJson(json);

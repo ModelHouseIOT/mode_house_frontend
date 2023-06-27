@@ -8,7 +8,7 @@ String accountToJson(List<Account> data) =>
 
 class Account {
   int id;
-  String isActive;
+  bool isActive;
   int userId;
   Account({
     required this.id,

@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:model_house/Security/Interfaces/Account.dart';
 import 'package:model_house/Security/Interfaces/BusinessProfile.dart';
 import 'package:model_house/Shared/HttpComon.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HttpBusinessProfile {
   var businessProfile = http.Client();
@@ -17,16 +18,16 @@ class HttpBusinessProfile {
     return null;
   }
 
-  Future<BusinessProfile?> getbusinessProfileById(String id) async {
-    var uri = Uri.parse("${httpBase}business_profile/account/$id");
+  Future<BusinessProfile?> getbusinessProfileAccountById(int id) async {
+    final persitence = await SharedPreferences.getInstance();
+    var uri = Uri.parse("$httpBase/account/$id/business_profile");
     var response = await businessProfile.get(uri, headers: {
       'Content-Type': 'application/json; charset=UTF-8',
-      "Accept": "application/json"
+      "Accept": "application/json",
+      'Authorization': 'Bearer ${persitence.getString("token")}'
     });
-    try {
+    if (response.statusCode == 200) {
       return BusinessProfile.fromJson(jsonDecode(response.body));
-    } catch (e) {
-      print("Error");
     }
     return null;
   }
