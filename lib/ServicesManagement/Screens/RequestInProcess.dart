@@ -6,19 +6,21 @@ import '../../Security/Interfaces/BusinessProfile.dart';
 import '../../Security/Services/Business_Profile.dart';
 import '../../Shared/Views/ListBusiness.dart';
 import '../../Shared/Widgets/texts/titles.dart';
+import '../Interfaces/RequestInterface.dart';
 
 // ignore: must_be_immutable
-class Favorites extends StatefulWidget {
-  User user;
+class RequestInProcess extends StatefulWidget {
+  List<RequestInterface>? requests;
   UserProfile? userProfile;
-  Favorites(this.user, this.userProfile, {Key? key}) : super(key: key);
+  RequestInProcess(this.requests, this.userProfile, {Key? key})
+      : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
-  _FavoritesState createState() => _FavoritesState();
+  _RequestInProcessState createState() => _RequestInProcessState();
 }
 
-class _FavoritesState extends State<Favorites> {
+class _RequestInProcessState extends State<RequestInProcess> {
   HttpBusinessProfile? httpBusinessProfile;
   List<BusinessProfile>? businesses;
   @override
@@ -39,16 +41,21 @@ class _FavoritesState extends State<Favorites> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 40, 20, 15),
-            child: Titles(28, "Favorites"),
+      appBar: AppBar(
+        title: Titles(28, "Request In Process"),
+        backgroundColor: const Color(0xffffffff),
+        centerTitle: true,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: Color(0XFF02AA8B),
           ),
-          businesses != null
-              ? ListBusiness(businesses!, widget.userProfile)
-              : Container()
-        ],
+          onPressed: () => {Navigator.of(context).pop()},
+        ),
+      ),
+      body: ListView(
+        children: [],
       ),
     );
   }

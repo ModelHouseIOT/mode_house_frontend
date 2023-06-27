@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:model_house/Security/Interfaces/Account.dart';
 import 'package:model_house/Security/Interfaces/User.dart';
 import 'package:model_house/Security/Interfaces/UserProfile.dart';
 import 'package:model_house/ServicesManagement/Screens/Profile.dart';
@@ -52,8 +50,8 @@ class _PerfilState extends State<Perfil> {
                           fontWeight: FontWeight.w600),
                     ),
                   ),
-                  const Text("hooal",
-                      style: TextStyle(color: Color(0XFF02AA8B)))
+                  Text(widget.userProfile.phoneNumber,
+                      style: const TextStyle(color: Color(0XFF02AA8B)))
                 ],
               )
             ],

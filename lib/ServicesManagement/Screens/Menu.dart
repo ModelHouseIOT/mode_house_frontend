@@ -1,14 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:model_house/Security/Interfaces/User.dart';
 import 'package:model_house/Security/Interfaces/UserProfile.dart';
 import 'package:model_house/Security/Services/User_Profile.dart';
-import 'package:model_house/ServicesManagement/Screens/Profile.dart';
 import 'package:model_house/Shared/Views/FormProfileUser.dart';
-import 'package:model_house/Shared/Views/ProfileUser.dart';
 import 'package:model_house/Shared/Widgets/buttons/ActiveButton.dart';
 
-import '../../Security/Interfaces/Account.dart';
 import '../../Shared/Views/Adicional.dart';
 import '../../Shared/Views/Activities.dart';
 import '../../Shared/Views/Perfil.dart';

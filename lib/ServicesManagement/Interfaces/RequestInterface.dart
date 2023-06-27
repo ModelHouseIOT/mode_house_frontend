@@ -1,12 +1,13 @@
 import 'dart:convert';
 
-List<Request> requestFromJson(String str) =>
-    List<Request>.from(json.decode(str).map((x) => Request.fromJson(x)));
+List<RequestInterface> requestFromJson(String str) =>
+    List<RequestInterface>.from(
+        json.decode(str).map((x) => RequestInterface.fromJson(x)));
 
-String requestToJson(List<Request> data) =>
+String requestToJson(List<RequestInterface> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class Request {
+class RequestInterface {
   int? id;
   String? requestAt;
   String? status;
@@ -14,7 +15,7 @@ class Request {
   String? accepted;
   int? acceptedAt;
   String? updateAt;
-  Request(
+  RequestInterface(
       {this.id,
       this.requestAt,
       this.status,
@@ -22,13 +23,14 @@ class Request {
       this.accepted,
       this.acceptedAt,
       this.updateAt});
-  factory Request.fromJson(Map<String, dynamic> json) => Request(
-      id: json["id"],
-      requestAt: json["requestAt"],
-      status: json["status:"],
-      description: json["description"],
-      acceptedAt: json["acceptedAt"],
-      updateAt: json["updateAt"]);
+  factory RequestInterface.fromJson(Map<String, dynamic> json) =>
+      RequestInterface(
+          id: json["id"],
+          requestAt: json["requestAt"],
+          status: json["status:"],
+          description: json["description"],
+          acceptedAt: json["acceptedAt"],
+          updateAt: json["updateAt"]);
   Map<String, dynamic> toJson() => {
         "id": id,
         "requestAt": requestAt,

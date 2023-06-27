@@ -4,7 +4,7 @@ import 'package:model_house/Security/Interfaces/BusinessProfile.dart';
 import 'package:model_house/Security/Interfaces/Proyect.dart';
 import 'package:model_house/Security/Interfaces/UserProfile.dart';
 import 'package:model_house/Security/Services/Proyect_Service.dart';
-import 'package:model_house/ServicesManagement/Interfaces/Request.dart';
+import 'package:model_house/ServicesManagement/Interfaces/RequestInterface.dart';
 import 'package:model_house/ServicesManagement/Services/Request_Service.dart';
 import 'package:model_house/Shared/Widgets/buttons/ActiveButton.dart';
 
@@ -23,7 +23,7 @@ class BusinessContent extends StatefulWidget {
 
 class _BusinessContentState extends State<BusinessContent> {
   HttpProyect? httpProyect;
-  Request? request;
+  RequestInterface? request;
   HttpRequest? httpRequest;
   List<Proyect>? proyects;
   final _formKey = GlobalKey<FormState>();
@@ -85,7 +85,7 @@ class _BusinessContentState extends State<BusinessContent> {
                     request = await httpRequest?.createRequest(
                         widget.userProfile!.id!,
                         widget.businessProfile.id,
-                        "PROPOSAL",
+                        "PENDING",
                         description.text,
                         false);
                     setState(() {

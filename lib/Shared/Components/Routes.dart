@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:model_house/Security/Interfaces/User.dart';
 import 'package:model_house/Security/Interfaces/UserProfile.dart';
 
-import '../../ServicesManagement/Screens/Favorites.dart';
+import '../../ServicesManagement/Screens/Options.dart';
 import '../../ServicesManagement/Screens/Home.dart';
-import '../../ServicesManagement/Screens/Notification.dart';
+import '../../ServicesManagement/Screens/Payment.dart';
 import '../../ServicesManagement/Screens/Menu.dart';
 
 // ignore: must_be_immutable
@@ -30,7 +30,7 @@ class _RoutesState extends State<Routes> {
     List<Widget> myList = [
       Home(widget.user, widget.userProfile),
       Favorites(widget.user, widget.userProfile),
-      Notifications(widget.user, widget.userProfile),
+      Payment(widget.user, widget.userProfile),
       Menu(widget.user, widget.userProfile),
     ];
     return myList[widget.index];

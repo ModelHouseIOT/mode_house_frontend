@@ -1,24 +1,26 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:model_house/Security/Interfaces/BusinessProfile.dart';
 import 'package:model_house/Security/Interfaces/User.dart';
 import 'package:model_house/Security/Interfaces/UserProfile.dart';
+
+import '../../Security/Interfaces/BusinessProfile.dart';
 import '../../Security/Services/Business_Profile.dart';
 import '../../Shared/Views/ListBusiness.dart';
 import '../../Shared/Widgets/texts/titles.dart';
+import '../Interfaces/RequestInterface.dart';
 
 // ignore: must_be_immutable
-class Notifications extends StatefulWidget {
-  User user;
+class RequestFinished extends StatefulWidget {
+  List<RequestInterface>? requests;
   UserProfile? userProfile;
-  Notifications(this.user, this.userProfile, {Key? key}) : super(key: key);
+  RequestFinished(this.requests, this.userProfile, {Key? key})
+      : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
-  _NotificationState createState() => _NotificationState();
+  _RequestFinishedState createState() => _RequestFinishedState();
 }
 
-class _NotificationState extends State<Notifications> {
+class _RequestFinishedState extends State<RequestFinished> {
   HttpBusinessProfile? httpBusinessProfile;
   List<BusinessProfile>? businesses;
   @override
@@ -29,6 +31,7 @@ class _NotificationState extends State<Notifications> {
   }
 
   Future getBusiness() async {
+    //businesses = await httpAccount?.getAllBusiness();
     businesses = await httpBusinessProfile?.getAllBusinessProfile();
     setState(() {
       businesses = businesses;
@@ -38,16 +41,21 @@ class _NotificationState extends State<Notifications> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 40, 20, 15),
-            child: Titles(28, "Notification"),
+      appBar: AppBar(
+        title: Titles(28, "Pending Finished"),
+        backgroundColor: const Color(0xffffffff),
+        centerTitle: true,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: Color(0XFF02AA8B),
           ),
-          businesses != null
-              ? ListBusiness(businesses!, widget.userProfile)
-              : Container()
-        ],
+          onPressed: () => {Navigator.of(context).pop()},
+        ),
+      ),
+      body: ListView(
+        children: [],
       ),
     );
   }
