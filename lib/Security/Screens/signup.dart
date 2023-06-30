@@ -117,13 +117,13 @@ class _SignupState extends State<Signup> {
                 padding: const EdgeInsets.all(0),
                 width: MediaQuery.of(context).size.width,
                 height: 45,
-                child: ActiveButton(10, "Sign Up", signUp, 19),
+                child: ActiveButton(25, "Sign Up", signUp, 19),
               ),
               Container(
                 margin: const EdgeInsets.fromLTRB(0, 20, 0, 20),
                 width: MediaQuery.of(context).size.width,
                 height: 45,
-                child: DisabledButton(10, "Sign Up With Google", () {}),
+                child: DisabledButton(25, "Sign Up With Google", () {}),
               ),
               Row(
                 children: <Widget>[

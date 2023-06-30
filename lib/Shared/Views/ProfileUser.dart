@@ -8,8 +8,8 @@ import '../Widgets/texts/titles.dart';
 
 // ignore: must_be_immutable
 class ProfileUser extends StatefulWidget {
-  UserProfile user;
-  ProfileUser(this.user, {Key? key}) : super(key: key);
+  UserProfile userProfile;
+  ProfileUser(this.userProfile, {Key? key}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
@@ -27,19 +27,17 @@ class _ProfileUserState extends State<ProfileUser> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              const CircleAvatar(
-                radius: 45,
-                backgroundImage: NetworkImage(
-                    "https://i.pinimg.com/550x/9e/f8/b3/9ef8b3ef5693f6282d9b11d998e04059.jpg"),
+              CircleAvatar(
+                radius: 50,
+                backgroundImage: NetworkImage(widget.userProfile.image!),
               ),
               Column(
                 children: [
-                  Subtitles(widget.user.firstName),
-                  const Padding(
-                    padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
-                    child: Text("Client and Business"),
-                  ),
-                  ActiveButton(8, "Edit Profile", () {}, 15)
+                  Subtitles(widget.userProfile.firstName),
+                  Container(
+                      padding: EdgeInsets.only(bottom: 15),
+                      child: Subtitles(widget.userProfile.lastName)),
+                  ActiveButton(8, "Edit Profile", () {}, 18)
                 ],
               )
             ],
@@ -54,58 +52,29 @@ class _ProfileUserState extends State<ProfileUser> {
                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                 child: Titles(23, "Personal Information"),
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 12, 0, 12),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Row(
-                      children: [
-                        Titles(13, "First Name: "),
-                        Text(widget.user.firstName)
-                      ],
+              Center(
+                child: Container(
+                  child: Column(children: [
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 10, top: 10),
+                      child: Column(
+                        children: [
+                          Titles(20, "Gender: "),
+                          Subtitles(widget.userProfile.gender),
+                        ],
+                      ),
                     ),
-                    Row(
-                      children: [
-                        Titles(13, "Last Name: "),
-                        Text(widget.user.lastName)
-                      ],
-                    )
-                  ],
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 10, top: 10),
+                      child: Column(
+                        children: [
+                          Titles(20, "Phone Number: "),
+                          Subtitles(widget.userProfile.phoneNumber)
+                        ],
+                      ),
+                    ),
+                  ]),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 12, 0, 12),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Row(
-                      children: [
-                        Titles(13, "Gender: "),
-                        Text(widget.user.gender)
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Titles(13, "Phone Number: "),
-                        Text(widget.user.phoneNumber)
-                      ],
-                    )
-                  ],
-                ),
-              ),
-              Column(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 12, 0, 12),
-                    child: Row(
-                      children: [
-                        Titles(13, "Address: "),
-                        const Text("Av. ...")
-                      ],
-                    ),
-                  )
-                ],
               )
             ],
           ),

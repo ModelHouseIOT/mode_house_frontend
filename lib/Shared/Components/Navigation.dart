@@ -22,18 +22,19 @@ class _NavigationState extends State<Navigation> {
         });
       },
       type: BottomNavigationBarType.fixed,
-      selectedItemColor: const Color(0XFF00C9AF),
+      selectedItemColor: const Color(0xFF02AA8B),
       unselectedItemColor: Colors.white,
       iconSize: 35.0,
       selectedFontSize: 18.0,
       unselectedFontSize: 14,
-      backgroundColor: const Color(0XFF152031),
+      backgroundColor: const Color(0XFF004A63),
       items: const [
         BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-        BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'Favorite'),
+        BottomNavigationBarItem(icon: Icon(Icons.article), label: 'Request'),
         BottomNavigationBarItem(
-            icon: Icon(Icons.notifications), label: 'Notification'),
-        BottomNavigationBarItem(icon: Icon(Icons.menu), label: 'Menu'),
+            icon: Icon(Icons.payment), label: 'Subscription'),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.person_outline_outlined), label: 'Profile'),
       ],
     );
   }

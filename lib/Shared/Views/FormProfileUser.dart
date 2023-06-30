@@ -20,8 +20,10 @@ class FormProfileUser extends StatefulWidget {
 class _FormProfileUserState extends State<FormProfileUser> {
   final firstname = TextEditingController();
   final lastname = TextEditingController();
-  final gender = TextEditingController();
+  final gender = TextEditingController(text: "Gender");
   final phonenumber = TextEditingController();
+  final image = TextEditingController();
+  List<String> genderOptions = ['Gender', 'Male', 'Female'];
   HttpUserProfile? httpUserProfile;
   UserProfile profile =
       UserProfile(firstName: '', gender: '', lastName: '', phoneNumber: '');
@@ -38,6 +40,7 @@ class _FormProfileUserState extends State<FormProfileUser> {
     profile.lastName = firstname.text;
     profile.gender = gender.text;
     profile.phoneNumber = phonenumber.text;
+    profile.image = image.text;
     response = await httpUserProfile?.createProfile(widget.user.id, profile);
     setState(() {
       response = response;
@@ -97,39 +100,69 @@ class _FormProfileUserState extends State<FormProfileUser> {
           onPressed: () => {Navigator.of(context).pop()},
         ),
       ),
-      body: Center(
-        child: Container(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-                child: Input(Icons.abc, "Insert First Name", false, firstname,
-                    false, TextInputType.text),
+      body: ListView(
+        children: [
+          Center(
+            child: Container(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                    child: Input(Icons.abc, "Insert First Name", false,
+                        firstname, false, TextInputType.text),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                    child: Input(Icons.abc, "Insert Last Name", false, lastname,
+                        false, TextInputType.text),
+                  ),
+                  DropdownButton<String>(
+                    value: gender.text,
+                    items: genderOptions
+                        .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Container(
+                          padding: EdgeInsets.only(top: 10, bottom: 10),
+                          width: MediaQuery.of(context).size.width * 0.8,
+                          child: Text(
+                            value,
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: const Color(0XFF02AA8B),
+                            ),
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                    // Step 5.
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        gender.text = newValue!;
+                      });
+                    },
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                    child: Input(Icons.abc, "Insert Phone Number", false,
+                        phonenumber, false, TextInputType.number),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                    child: Input(Icons.abc, "Insert your image URL", false,
+                        image, false, TextInputType.text),
+                  ),
+                  Container(
+                      margin: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                      width: MediaQuery.of(context).size.width,
+                      height: 45,
+                      child: ActiveButton(12, "Update Profile", initialize, 18))
+                ],
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-                child: Input(Icons.abc, "Insert Last Name", false, lastname,
-                    false, TextInputType.text),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-                child: Input(Icons.abc, "Insert Gender", false, gender, false,
-                    TextInputType.text),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-                child: Input(Icons.abc, "Insert Phone Number", false,
-                    phonenumber, false, TextInputType.number),
-              ),
-              Container(
-                  margin: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-                  width: MediaQuery.of(context).size.width,
-                  height: 45,
-                  child: ActiveButton(12, "Update Profile", initialize, 18))
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

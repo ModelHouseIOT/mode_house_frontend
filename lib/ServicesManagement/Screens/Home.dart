@@ -45,7 +45,7 @@ class _HomeState extends State<Home> {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.fromLTRB(20, 40, 20, 15),
-            child: Titles(28, "Home"),
+            child: Titles(32, "Home"),
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(20, 15, 20, 0),

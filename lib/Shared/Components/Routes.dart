@@ -29,7 +29,7 @@ class _RoutesState extends State<Routes> {
   Widget build(BuildContext context) {
     List<Widget> myList = [
       Home(widget.user, widget.userProfile),
-      Favorites(widget.user, widget.userProfile),
+      Options(widget.user, widget.userProfile),
       Payment(widget.user, widget.userProfile),
       Menu(widget.user, widget.userProfile),
     ];

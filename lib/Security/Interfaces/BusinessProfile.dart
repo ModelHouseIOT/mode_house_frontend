@@ -8,7 +8,7 @@ String businessProfileToJson(List<BusinessProfile> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class BusinessProfile {
-  int id;
+  int? id;
   String address;
   String description;
   String image;
@@ -18,7 +18,7 @@ class BusinessProfile {
   int? accountId;
   String? foundationDate;
   BusinessProfile({
-    required this.id,
+    this.id,
     required this.address,
     required this.description,
     required this.image,

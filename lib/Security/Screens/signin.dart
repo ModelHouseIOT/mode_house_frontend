@@ -115,13 +115,13 @@ class _SigninState extends State<Signin> {
               SizedBox(
                 width: MediaQuery.of(context).size.width,
                 height: 45,
-                child: ActiveButton(10, "Sign In", signIn, 19),
+                child: ActiveButton(25, "Sign In", signIn, 19),
               ),
               Container(
                 margin: const EdgeInsets.fromLTRB(0, 20, 0, 20),
                 width: MediaQuery.of(context).size.width,
                 height: 45,
-                child: DisabledButton(10, "Sign In With Google", () {}),
+                child: DisabledButton(25, "Sign In With Google", () {}),
               ),
               Row(
                 children: <Widget>[

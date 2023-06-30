@@ -22,8 +22,8 @@ class _WelcomeApplicationState extends State<WelcomeApplication> {
         child: Column(
           children: <Widget>[
             Padding(
-                padding: const EdgeInsets.fromLTRB(0, 40, 0, 40),
-                child: Titles(40, "Welcome")),
+                padding: const EdgeInsets.fromLTRB(0, 60, 0, 40),
+                child: Titles(48, "Welcome")),
             Container(
               padding: const EdgeInsets.fromLTRB(0, 100, 0, 100),
               child: Image.asset(
@@ -33,24 +33,23 @@ class _WelcomeApplicationState extends State<WelcomeApplication> {
               ),
             ),
             Container(
-              padding: const EdgeInsets.fromLTRB(0, 100, 0, 0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              padding: const EdgeInsets.fromLTRB(25, 60, 25, 0),
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                     child: SizedBox(
-                        width: 120,
-                        height: 45,
-                        child: ActiveButton(5, "Sign In", redirectSignIn, 19)),
+                        width: 140,
+                        height: 50,
+                        child: ActiveButton(25, "Sign In", redirectSignIn, 19)),
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+                    padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
                     child: SizedBox(
-                        width: 120,
-                        height: 45,
-                        child: ActiveButton(5, "Sign Up", redirectSignUp, 19)),
+                        width: 140,
+                        height: 50,
+                        child: ActiveButton(25, "Sign Up", redirectSignUp, 19)),
                   )
                 ],
               ),

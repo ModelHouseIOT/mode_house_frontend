@@ -6,10 +6,11 @@ import 'package:model_house/Shared/HttpComon.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HttpBusinessProfile {
-  var businessProfile = http.Client();
+  var business = http.Client();
   Future<List<BusinessProfile>?> getAllBusinessProfile() async {
     var uri = Uri.parse("$httpBase/business_profile");
-    var response = await businessProfile.get(uri);
+    var response = await business.get(uri);
+    print(response.body);
     if (response.statusCode == 200) {
       var json = response.body;
       return businessProfileFromJson(json);
@@ -20,7 +21,7 @@ class HttpBusinessProfile {
   Future<BusinessProfile?> getbusinessProfileAccountById(int id) async {
     final persitence = await SharedPreferences.getInstance();
     var uri = Uri.parse("$httpBase/account/$id/business_profile");
-    var response = await businessProfile.get(uri, headers: {
+    var response = await business.get(uri, headers: {
       'Content-Type': 'application/json; charset=UTF-8',
       "Accept": "application/json",
       'Authorization': 'Bearer ${persitence.getString("token")}'
@@ -31,21 +32,17 @@ class HttpBusinessProfile {
     return null;
   }
 
-  Future<BusinessProfile?> createProfile(String firstname, String lastname,
-      String phonenumber, String gender, int accountId) async {
-    var uri = Uri.parse("$httpBase/business_profile");
-    var response = await businessProfile.post(uri,
+  Future<BusinessProfile?> createProfile(
+      BusinessProfile businessProfile, int accountId) async {
+    final persitence = await SharedPreferences.getInstance();
+    var uri = Uri.parse("$httpBase/account/$accountId/business_profile");
+    var response = await business.post(uri,
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
-          "Accept": "application/json"
+          "Accept": "application/json",
+          'Authorization': 'Bearer ${persitence.getString("token")}'
         },
-        body: jsonEncode({
-          'firstName': firstname,
-          'lastName': lastname,
-          'gender': gender,
-          'phoneNumber': phonenumber,
-          'accountId': accountId,
-        }));
+        body: jsonEncode(businessProfile));
     if (response.statusCode == 200) {
       return BusinessProfile.fromJson(jsonDecode(response.body));
     }

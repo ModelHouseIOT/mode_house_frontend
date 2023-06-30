@@ -54,19 +54,19 @@ class _InputState extends State<Input> {
       );
     }
     return TextField(
-      keyboardType: TextInputType.visiblePassword,
-      controller: widget.variable,
-      style: GoogleFonts.poppins(fontSize: 14, color: const Color(0XFF02AA8B)),
-      decoration: InputDecoration(
-        hintText: widget.text,
-        hintStyle: const TextStyle(color: Color(0XFF02AA8B)),
-        fillColor: Colors.white,
-        filled: true,
-        focusedBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(color: Color(0XFF02AA8B))),
-        enabledBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(color: Color(0XFF02AA8B))),
-      ),
-    );
+        keyboardType: widget.inputType,
+        controller: widget.variable,
+        style:
+            GoogleFonts.poppins(fontSize: 14, color: const Color(0XFF02AA8B)),
+        decoration: InputDecoration(
+          hintText: widget.text,
+          hintStyle: const TextStyle(color: Color(0XFF02AA8B)),
+          fillColor: Colors.white,
+          filled: true,
+          focusedBorder: const UnderlineInputBorder(
+              borderSide: BorderSide(color: Color(0XFF02AA8B))),
+          enabledBorder: const UnderlineInputBorder(
+              borderSide: BorderSide(color: Color(0XFF02AA8B))),
+        ));
   }
 }

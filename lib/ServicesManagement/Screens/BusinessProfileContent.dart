@@ -1,30 +1,21 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:model_house/Security/Interfaces/BusinessProfile.dart';
-import 'package:model_house/Security/Interfaces/Proyect.dart';
-import 'package:model_house/Security/Interfaces/UserProfile.dart';
-import 'package:model_house/Security/Services/Proyect_Service.dart';
-import 'package:model_house/ServicesManagement/Interfaces/RequestInterface.dart';
-import 'package:model_house/ServicesManagement/Services/Request_Service.dart';
-import 'package:model_house/Shared/Widgets/buttons/ActiveButton.dart';
-
+import '../../Security/Interfaces/BusinessProfile.dart';
+import '../../Security/Interfaces/Proyect.dart';
+import '../../Security/Services/Proyect_Service.dart';
 import '../../Shared/Widgets/texts/titles.dart';
 
 // ignore: must_be_immutable
-class BusinessContent extends StatefulWidget {
+class BusinessProfileContent extends StatefulWidget {
   BusinessProfile businessProfile;
-  UserProfile? userProfile;
-  BusinessContent(this.businessProfile, this.userProfile, {Key? key})
-      : super(key: key);
+  BusinessProfileContent(this.businessProfile, {Key? key}) : super(key: key);
+
   @override
   // ignore: library_private_types_in_public_api
-  _BusinessContentState createState() => _BusinessContentState();
+  _BusinessProfileContentState createState() => _BusinessProfileContentState();
 }
 
-class _BusinessContentState extends State<BusinessContent> {
+class _BusinessProfileContentState extends State<BusinessProfileContent> {
   HttpProyect? httpProyect;
-  RequestInterface? request;
-  HttpRequest? httpRequest;
   List<Proyect>? proyects;
   final _formKey = GlobalKey<FormState>();
   final TextEditingController description = TextEditingController();
@@ -32,7 +23,6 @@ class _BusinessContentState extends State<BusinessContent> {
   @override
   void initState() {
     httpProyect = HttpProyect();
-    httpRequest = HttpRequest();
     getBusiness();
     super.initState();
   }
@@ -43,80 +33,6 @@ class _BusinessContentState extends State<BusinessContent> {
     setState(() {
       proyects = proyects;
     });
-  }
-
-  Future emitRequest() async {
-    showDialog(
-        barrierDismissible: false,
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text('Formulario'),
-            content: SingleChildScrollView(
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  children: [
-                    TextFormField(
-                      controller: description,
-                      decoration:
-                          const InputDecoration(labelText: 'Description'),
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Please enter your description';
-                        }
-                        return null;
-                      },
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            actions: [
-              TextButton(
-                child: const Text('Cancelar'),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
-              TextButton(
-                child: const Text('Guardar'),
-                onPressed: () async {
-                  if (_formKey.currentState!.validate()) {
-                    request = await httpRequest?.createRequest(
-                        widget.userProfile!.id!,
-                        widget.businessProfile.id!,
-                        "PENDING",
-                        description.text,
-                        false);
-                    setState(() {
-                      if (request != null) {
-                        request = request;
-                        const snackBar = SnackBar(
-                          content: Text('A request was created successfully'),
-                          duration: Duration(seconds: 2),
-                          backgroundColor: Color(0xFF7EDA3E),
-                        );
-                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                      } else {
-                        const snackBar = SnackBar(
-                            content:
-                                Text('A request was not created successfully'),
-                            duration: Duration(seconds: 2),
-                            backgroundColor:
-                                // ignore: use_full_hex_values_for_flutter_colors
-                                Color(0xff7da4a3e));
-                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                      }
-                    });
-                    // ignore: use_build_context_synchronously
-                    Navigator.pop(context);
-                  }
-                },
-              ),
-            ],
-          );
-        });
   }
 
   @override
@@ -201,12 +117,6 @@ class _BusinessContentState extends State<BusinessContent> {
                     ),
                   )
                 : Container(),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: 45,
-              margin: const EdgeInsets.all(15),
-              child: ActiveButton(10, "Request", emitRequest, 18),
-            )
           ],
         ),
       ),

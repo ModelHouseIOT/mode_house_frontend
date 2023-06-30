@@ -1,22 +1,22 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:model_house/Security/Interfaces/User.dart';
-import 'package:model_house/Security/Interfaces/UserProfile.dart';
-import 'package:model_house/Shared/Views/FormProfileUser.dart';
+import 'package:model_house/Security/Interfaces/Account.dart';
+import 'package:model_house/Security/Interfaces/BusinessProfile.dart';
+import 'package:model_house/ServicesManagement/Screens/BusinessProfileContent.dart';
+import 'package:model_house/Shared/Views/FormBusinessProfile.dart';
 
-import '../../ServicesManagement/Screens/Profile.dart';
-
-// ignore: must_be_immutable
-class Perfil extends StatefulWidget {
-  User user;
-  UserProfile userProfile;
-  Perfil(this.user, this.userProfile, {Key? key}) : super(key: key);
+class PerfilBusiness extends StatefulWidget {
+  Account account;
+  BusinessProfile businessProfile;
+  PerfilBusiness(this.account, this.businessProfile, {Key? key})
+      : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
-  _PerfilState createState() => _PerfilState();
+  _PerfilBusinessState createState() => _PerfilBusinessState();
 }
 
-class _PerfilState extends State<Perfil> {
+class _PerfilBusinessState extends State<PerfilBusiness> {
   @override
   void initState() {
     super.initState();
@@ -30,11 +30,11 @@ class _PerfilState extends State<Perfil> {
         margin: const EdgeInsets.only(bottom: 30),
         child: MaterialButton(
           padding: const EdgeInsets.all(15),
-          onPressed: redirectPerfil,
+          onPressed: redirectPerfilBusiness,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              widget.userProfile.image == null
+              widget.businessProfile.image == null
                   ? const Icon(
                       Icons.person,
                       color: Color(0XFF02AA8B),
@@ -42,21 +42,22 @@ class _PerfilState extends State<Perfil> {
                     )
                   : CircleAvatar(
                       radius: 50,
-                      backgroundImage: NetworkImage(widget.userProfile.image!),
+                      backgroundImage:
+                          NetworkImage(widget.businessProfile.image),
                     ),
               Column(
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                     child: Text(
-                      "${widget.userProfile.firstName} ${widget.userProfile.lastName}",
+                      widget.businessProfile.name,
                       style: const TextStyle(
                           color: Color(0XFF02AA8B),
                           fontSize: 19,
                           fontWeight: FontWeight.w600),
                     ),
                   ),
-                  Text(widget.userProfile.phoneNumber,
+                  Text(widget.businessProfile.phoneBusiness,
                       style: const TextStyle(color: Color(0XFF02AA8B)))
                 ],
               )
@@ -67,20 +68,21 @@ class _PerfilState extends State<Perfil> {
     );
   }
 
-  void redirectPerfil() {
-    // ignore: unnecessary_null_comparison
-    widget.user != null
+  void redirectPerfilBusiness() {
+    widget.account != null
         ? Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) {
-                return Profile(widget.user, widget.userProfile);
+                return BusinessProfileContent(widget.businessProfile);
               },
             ),
           )
-        : Navigator.of(context).push(
+        :
+        // ignore: unnecessary_null_comparison
+        Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) {
-                return FormProfileUser(widget.user);
+                return FormProfileBusines(widget.account);
               },
             ),
           );

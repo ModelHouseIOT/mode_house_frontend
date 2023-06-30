@@ -5,7 +5,6 @@ import 'package:model_house/Security/Interfaces/UserProfile.dart';
 import 'package:model_house/Shared/Views/ProfileUser.dart';
 import 'package:model_house/Shared/Widgets/texts/titles.dart';
 
-// ignore: must_be_immutable
 class Profile extends StatefulWidget {
   User user;
   UserProfile userProfile;

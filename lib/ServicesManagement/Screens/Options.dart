@@ -16,17 +16,17 @@ import '../../Shared/Widgets/texts/titles.dart';
 import '../Services/Request_Service.dart';
 
 // ignore: must_be_immutable
-class Favorites extends StatefulWidget {
+class Options extends StatefulWidget {
   User user;
   UserProfile? userProfile;
-  Favorites(this.user, this.userProfile, {Key? key}) : super(key: key);
+  Options(this.user, this.userProfile, {Key? key}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
-  _FavoritesState createState() => _FavoritesState();
+  _OptionsState createState() => _OptionsState();
 }
 
-class _FavoritesState extends State<Favorites> {
+class _OptionsState extends State<Options> {
   List<String> typesOptions = [
     "Pending Proposal",
     "Pending Request",
@@ -102,15 +102,15 @@ class _FavoritesState extends State<Favorites> {
 
   Future getRequestBusinessProfile() async {
     requestsPending = await httpRequest?.getAllBusinessProfileIdAndStatus(
-        businessProfile!.id, "PENDING");
+        businessProfile!.id!, "PENDING");
     requestsPendingProposal = await httpRequest?.getAllUserProfileIdAndStatus(
-        businessProfile!.id, "PENDING_PROPOSAL");
+        businessProfile!.id!, "PENDING_PROPOSAL");
     inProcess = await httpRequest?.getAllUserProfileIdAndStatus(
-        businessProfile!.id, "IN_PROCESS");
+        businessProfile!.id!, "IN_PROCESS");
     canceled = await httpRequest?.getAllUserProfileIdAndStatus(
-        businessProfile!.id, "CANCELED");
+        businessProfile!.id!, "CANCELED");
     finished = await httpRequest?.getAllUserProfileIdAndStatus(
-        businessProfile!.id, "FINISHED");
+        businessProfile!.id!, "FINISHED");
     setState(() {
       requestsPending = requestsPending;
       requestsPendingProposal = requestsPendingProposal;
@@ -124,7 +124,7 @@ class _FavoritesState extends State<Favorites> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Titles(28, "Model House Options"),
+          title: Titles(30, "Model House Options"),
           backgroundColor: const Color(0xffffffff),
           centerTitle: true,
           elevation: 0,
@@ -132,14 +132,13 @@ class _FavoritesState extends State<Favorites> {
       body: ListView(
         children: [
           Container(
-            padding: const EdgeInsets.all(15),
+            padding: const EdgeInsets.only(top: 25),
             width: MediaQuery.of(context).size.width,
             child: GridView.builder(
               shrinkWrap: true,
               itemCount: typesOptions.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                crossAxisSpacing: 10.0,
                 mainAxisSpacing: 10.0,
               ),
               itemBuilder: (BuildContext context, int index) {
@@ -219,7 +218,7 @@ class _FavoritesState extends State<Favorites> {
                               ),
                               Icon(
                                 Icons.pending_actions_outlined,
-                                color: Color(0xFFE44A3F),
+                                color: Color(0XFF02AA8B),
                                 size: 50,
                               ),
                             ],
